@@ -37,4 +37,4 @@
     - Ninguna
 
 ### *¿Por qué typeof null devuelve "object" y por qué se considera un bug histórico?*
-    - Eso se debe a que typeof solo lee los primeros bits en una direccion de memoria, y justo null y object empiezan de la misma forma, asi que typeof(null) devuelve object
+    - Eso se debe a que typeof solo lee los primeros bits en una direccion de memoria, y justo null y object empiezan de la misma forma, asi que typeof(null) devuelve object.
