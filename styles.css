@@ -1,0 +1,220 @@
+/* Estilos específicos de esta página */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: #1e1e2f;
+}
+
+/* Contenedor que envuelve todo el contenido excepto header y footer */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilos del dropdown */
+.dropdown {
+    background: #25252f;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #3d3d4a;
+    margin-bottom: 20px;
+}
+
+.dropdown-toggle {
+    display: none;
+}
+
+.dropdown-title {
+    display: block;
+    padding: 15px 20px;
+    background: #2d2d3a;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+}
+
+.dropdown-title:hover {
+    background: #3d3d4a;
+}
+
+.dropdown-title h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: inline-block;
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 5px;
+}
+
+/* Flecha con transición suave */
+.dropdown-title::after {
+    content: "▼";
+    float: right;
+    color: #007acc;
+    font-size: 0.9rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+/* Rotación de la flecha cuando está abierto */
+#teoria-toggle:checked ~ .dropdown-title::after {
+    transform: rotate(180deg);
+}
+
+/* Contenedor del contenido que se anima */
+.dropdown-content {
+    padding: 20px;
+    background: #1e1e2f;
+    overflow: hidden;
+}
+
+/* Animación de entrada y salida */
+.dropdown-content {
+    display: block;
+    animation: slideUp 0.3s ease forwards;
+}
+
+#teoria-toggle:checked ~ .dropdown-content {
+    animation: slideDown 0.3s ease forwards;
+}
+
+/* Animación para cuando se cierra (salida) */
+@keyframes slideUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 2000px;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+        visibility: hidden;
+    }
+}
+
+/* Animación para cuando se abre (entrada) */
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 2000px;
+        visibility: visible;
+    }
+}
+
+/* Estado inicial (cerrado) - importante para que funcione la animación de salida */
+.dropdown-content {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 20px;
+    visibility: hidden;
+    transition: all 0s;
+}
+
+/* Estado cuando está abierto (checked) */
+#teoria-toggle:checked ~ .dropdown-content {
+    max-height: 2000px;
+    opacity: 1;
+    padding: 20px;
+    visibility: visible;
+}
+
+/* Animación escalonada para los ejercicios (solo cuando se abren) */
+.dropdown-content .ejercicio {
+    background: #1e1e2a;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #2d2d3a;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+/* Retrasos escalonados para cada ejercicio - SOLO cuando el dropdown está abierto */
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(1) { animation-delay: 0.05s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(2) { animation-delay: 0.1s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(3) { animation-delay: 0.15s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(4) { animation-delay: 0.2s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(5) { animation-delay: 0.25s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(6) { animation-delay: 0.3s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(7) { animation-delay: 0.35s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(8) { animation-delay: 0.4s; }
+#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(9) { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Resto de estilos para ejercicios */
+.dropdown-content .ejercicio:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-content .ejercicio:hover {
+    border-color: #007acc;
+}
+
+.dropdown-content .ejercicio h3 {
+    background: #2d2d3a;
+    padding: 12px 15px;
+    margin: 0;
+    color: #79c0ff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-left: 3px solid #007acc;
+}
+
+.dropdown-content .ejercicio-contenido {
+    padding: 15px;
+    color: #d4d4d4;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+.dropdown-content .ejercicio-contenido p {
+    margin-bottom: 10px;
+}
+
+.dropdown-content .ejercicio-contenido strong {
+    color: #ffb86c;
+}
+
+.dropdown-content .ejercicio-contenido code {
+    background: #0a0a0f;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #89ca78;
+}
+
+.dropdown-content .ejercicio-contenido ul {
+    margin: 8px 0 8px 20px;
+}
+
+.dropdown-content .ejercicio-contenido li {
+    margin-bottom: 5px;
+    color: #a0a0b0;
+}

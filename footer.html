@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- footer.html -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Curso JavaScript</h4>
+            <p>Aprendé desde cero con ejercicios prácticos y teoría clara.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Módulos</h4>
+            <ul>
+                <li><a href="modulo1/index.html">Módulo 1: Fundamentos</a></li>
+                <li><a href="modulo2/index.html">Módulo 2: Estructuras</a></li>
+                <li><a href="modulo3/index.html">Módulo 3: Arrays</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Recursos</h4>
+            <ul>
+                <li><a href="#">Documentación</a></li>
+                <li><a href="#">Ejercicios extra</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Curso JavaScript. Todos los derechos reservados. Css hecho con IA</p>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: #1a1a28;
+        border-top: 1px solid #3d3d4a;
+        margin-top: auto;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    
+    .footer-section {
+        flex: 1;
+        min-width: 180px;
+    }
+    
+    .footer-section h4 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #007acc;
+        display: inline-block;
+    }
+    
+    .footer-section p {
+        color: #a0a0b0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-section ul li {
+        margin-bottom: 8px;
+    }
+    
+    .footer-section ul li a {
+        color: #a0a0b0;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+    }
+    
+    .footer-section ul li a:hover {
+        color: #007acc;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid #2d2d3a;
+        background: #14141f;
+    }
+    
+    .footer-bottom p {
+        color: #6a6a7a;
+        font-size: 0.8rem;
+    }
+    
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .footer-section h4 {
+            display: inline-block;
+        }
+    }
+</style>
+</body>
+<script src="./loader.js"></script>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            overflow:visible;
+        }
+        
+        header {
+            background-color: #2d2d3a;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;  
+        }
+        
+        svg {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            fill: white;
+        }
+        
+        #menuCheckbox {
+            display: none;
+        }
+        
+        #menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            z-index: 5;
+            background-color: #1e1e2f;
+            height: calc(100vh - 80px);
+            width: 300px;
+            transform: translateX(-300px);
+            transition: transform 0.4s ease;
+            padding: 20px;
+            color: white;
+        }
+        
+        #menuCheckbox:checked ~ #menu {
+            transform: translateX(0);
+        }
+        
+        #overlay {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 4;
+        }
+        
+        #menuCheckbox:checked ~ #overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        a, a:active, a:visited{
+            text-decoration: none;
+            color: inherit;
+        }
+        #menu p {
+            display: block;
+            font-size: larger;
+            margin: 10px;
+            width: fit-content;
+            border-bottom: 1px solid #3d3d4a;
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #menu p:hover {
+            border-bottom-color: #007acc;
+            transform: translateX(5px);
+            color: #007acc;
+        }
+
+        #menu p:hover a {
+            transform: translateX(5px);
+            color: #007acc;
+        }
+
+        #menu p a {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        #menu p {
+            position: relative;
+        }
+
+        #menu p:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <label for="menuCheckbox">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/>
+            </svg>
+        </label>
+        <span style="color: white; margin-left: 15px;">Curso JavaScript</span>
+    </header>
+    
+    <input type="checkbox" id="menuCheckbox">
+    
+    <div id="overlay" onclick="cerrarMenu()"></div>
+    
+    <div id="menu">
+        <h2>Módulos</h2>
+        <p> <a href="./modulo1.html">Módulo 1: Fundamentos</a></p>
+        <p><a href="#">Módulo 2: Estructuras</a></p>
+        <p><a href="#">Módulo 3: Arrays</a></p>
+        <p><a href="#">Módulo 4: Objetos</a></p>
+    </div>
+</body>
+</html>

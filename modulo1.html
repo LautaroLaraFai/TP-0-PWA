@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modulo 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué significan los conceptos de scope, hoisting y mutabilidad en JavaScript? Explicá con ejemplos simples.</strong></p>
+                        <p><strong>Scope:</strong> Es el alcance de una variable. Por ejemplo, <code>var</code> tiene alcance global o de función, mientras que <code>let</code> y <code>const</code> tienen alcance de bloque.</p>
+                        <p><strong>Hoisting:</strong> Es cuando las variables o funciones se "elevan" al inicio de su ámbito. Las funciones se elevan completas. Las variables con <code>var</code> se elevan pero se inicializan con <code>undefined</code>. Las variables con <code>let</code> y <code>const</code> también se elevan pero quedan en una "zona muerta" hasta su declaración.</p>
+                        <p><strong>Mutabilidad:</strong> Es la capacidad de cambiar el valor de una variable después de crearla. Los datos mutables pueden modificarse. Los datos inmutables no pueden cambiarse, como los valores primitivos.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencias hay entre var, let y const en cuanto a scope, hoisting y mutabilidad? ¿Cuándo usarías uno y cuándo otro?</strong></p>
+                        <p><strong>var:</strong> Scope global o de función. Hoisting con <code>undefined</code>. Mutable. No se recomienda usar.</p>
+                        <p><strong>let:</strong> Scope de bloque. Hoisting pero en zona muerta. Mutable. Se usa cuando el valor va a cambiar.</p>
+                        <p><strong>const:</strong> Scope de bloque. Hoisting pero en zona muerta. Inmutable (no se puede reasignar). Se usa cuando el valor no va a cambiar.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué pasa si intentás usar una variable declarada con let antes de su declaración? ¿Y con var?</strong></p>
+                        <p>Con <code>let</code> da un error de referencia porque está en la "zona muerta temporal". Con <code>var</code> devuelve <code>undefined</code> porque se eleva pero no se inicializa.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué significa que JavaScript sea un lenguaje de tipado dinámico?</strong></p>
+                        <p>Significa que una variable puede cambiar de tipo en tiempo de ejecución. Una misma variable puede contener primero un string, luego un número, después un array, etc. No es necesario declarar el tipo al crear la variable.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuál es la diferencia entre undefined y null en JavaScript?</strong></p>
+                        <p><code>undefined</code> significa que una variable fue declarada pero no tiene valor asignado. <code>null</code> es un valor que se asigna intencionalmente para indicar "vacío" o "sin valor". Es una diferencia semántica: undefined es falta de valor, null es valor vacío.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué tipo de valor es NaN y en qué situaciones puede aparecer?</strong></p>
+                        <p><code>NaN</code> (Not a Number) es de tipo <code>number</code>. Puede aparecer en:</p>
+                        <ul>
+                            <li>Operaciones matemáticas inválidas: <code>0 / 0</code>, raíz cuadrada de un número negativo</li>
+                            <li>Conversiones fallidas: <code>parseInt("texto")</code></li>
+                            <li>Operaciones con valores indefinidos</li>
+                            <li>Cualquier operación que involucre un <code>NaN</code> también devuelve <code>NaN</code></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué hace el operador typeof y qué valores puede devolver?</strong></p>
+                        <p><code>typeof</code> devuelve el tipo de dato de una variable. Puede devolver: <code>"string"</code>, <code>"number"</code>, <code>"boolean"</code>, <code>"undefined"</code>, <code>"object"</code>, <code>"function"</code>, <code>"bigint"</code>, <code>"symbol"</code>.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 8</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencias hay entre usar comillas simples, dobles o backticks para strings?</strong></p>
+                        <p>En la práctica, no hay diferencias funcionales. Las tres sirven para crear strings. Los backticks (`` ` ``) permiten interpolación de variables con <code>${variable}</code> y strings multilínea. Las comillas simples y dobles son equivalentes, solo se diferencian en que una permite incluir la otra sin escaparla.</p>
+                    </div>
+                </div>
+                
+                <div class="ejercicio">
+                    <h3>Ejercicio 9</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Por qué typeof null devuelve "object" y por qué se considera un bug histórico?</strong></p>
+                        <p><code>typeof null</code> devuelve <code>"object"</code> porque en las primeras versiones de JavaScript, los valores se representaban con etiquetas de tipo. <code>null</code> tenía la etiqueta de objeto (0x00) y esto quedó así por compatibilidad. Se considera un bug histórico que no se puede corregir porque rompería mucho código existente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown-content" id="dropdown-practica">
+                
+            </div>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+</body>
+<script src="./loader.js"></script>
+</html>
