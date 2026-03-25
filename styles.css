@@ -59,26 +59,38 @@ body {
     display: inline-block;
 }
 
-/* Rotación de la flecha cuando está abierto */
-#teoria-toggle:checked ~ .dropdown-title::after {
+/* Rotación de la flecha cuando el checkbox del mismo dropdown está marcado */
+.dropdown-toggle:checked ~ .dropdown-title::after {
     transform: rotate(180deg);
 }
 
 /* Contenedor del contenido que se anima */
 .dropdown-content {
-    padding: 20px;
     background: #1e1e2f;
     overflow: hidden;
 }
 
-/* Animación de entrada y salida */
+/* Estado inicial (cerrado) */
 .dropdown-content {
-    display: block;
-    animation: slideUp 0.3s ease forwards;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 20px;
+    visibility: hidden;
+    transition: all 0s;
 }
 
-#teoria-toggle:checked ~ .dropdown-content {
+/* Estado cuando está abierto (checked) - para cualquier dropdown */
+.dropdown-toggle:checked ~ .dropdown-content {
+    max-height: 2000px;
+    opacity: 1;
+    padding: 20px;
+    visibility: visible;
     animation: slideDown 0.3s ease forwards;
+}
+
+/* Animación para cuando se cierra (por defecto) */
+.dropdown-content {
+    animation: slideUp 0.3s ease forwards;
 }
 
 /* Animación para cuando se cierra (salida) */
@@ -94,7 +106,6 @@ body {
         max-height: 0;
         padding-top: 0;
         padding-bottom: 0;
-        margin: 0;
         visibility: hidden;
     }
 }
@@ -116,23 +127,6 @@ body {
     }
 }
 
-/* Estado inicial (cerrado) - importante para que funcione la animación de salida */
-.dropdown-content {
-    max-height: 0;
-    opacity: 0;
-    padding: 0 20px;
-    visibility: hidden;
-    transition: all 0s;
-}
-
-/* Estado cuando está abierto (checked) */
-#teoria-toggle:checked ~ .dropdown-content {
-    max-height: 2000px;
-    opacity: 1;
-    padding: 20px;
-    visibility: visible;
-}
-
 /* Animación escalonada para los ejercicios (solo cuando se abren) */
 .dropdown-content .ejercicio {
     background: #1e1e2a;
@@ -145,16 +139,19 @@ body {
     animation: fadeInUp 0.3s ease forwards;
 }
 
-/* Retrasos escalonados para cada ejercicio - SOLO cuando el dropdown está abierto */
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(1) { animation-delay: 0.05s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(2) { animation-delay: 0.1s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(3) { animation-delay: 0.15s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(4) { animation-delay: 0.2s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(5) { animation-delay: 0.25s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(6) { animation-delay: 0.3s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(7) { animation-delay: 0.35s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(8) { animation-delay: 0.4s; }
-#teoria-toggle:checked ~ .dropdown-content .ejercicio:nth-child(9) { animation-delay: 0.45s; }
+/* Retrasos escalonados para cada ejercicio - cuando el dropdown está abierto */
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(1) { animation-delay: 0.05s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(2) { animation-delay: 0.1s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(3) { animation-delay: 0.15s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(4) { animation-delay: 0.2s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(5) { animation-delay: 0.25s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(6) { animation-delay: 0.3s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(7) { animation-delay: 0.35s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(8) { animation-delay: 0.4s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(9) { animation-delay: 0.45s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(10) { animation-delay: 0.5s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(11) { animation-delay: 0.55s; }
+.dropdown-toggle:checked ~ .dropdown-content .ejercicio:nth-child(12) { animation-delay: 0.6s; }
 
 @keyframes fadeInUp {
     0% {
@@ -217,4 +214,233 @@ body {
 .dropdown-content .ejercicio-contenido li {
     margin-bottom: 5px;
     color: #a0a0b0;
+}
+
+
+
+
+
+
+/* Contenedor principal del ejercicio */
+.ejercicio {
+    background: #25252f;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #3d3d4a;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ejercicio:hover {
+    border-color: #007acc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Título del ejercicio */
+.ejercicio h3 {
+    color: #79c0ff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #007acc;
+    display: inline-block;
+}
+
+/* Instrucción del ejercicio */
+.ejercicio .instruccion {
+    background: #1e1e2a;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 3px solid #007acc;
+    color: #d4d4d4;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Textarea */
+.ejercicio textarea {
+    width: 100%;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 15px;
+    border: 1px solid #3d3d4a;
+    border-radius: 8px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease;
+    margin: 10px 0;
+}
+
+.ejercicio textarea:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+/* Botón ejecutar */
+.ejercicio button {
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 5px 0 10px 0;
+}
+
+.ejercicio button:hover {
+    background: #005999;
+    transform: translateY(-1px);
+}
+
+.ejercicio button:active {
+    transform: translateY(0);
+}
+
+/* Consola */
+.ejercicio .consola {
+    background: #0a0a0f;
+    border: 1px solid #3d3d4a;
+    border-radius: 8px;
+    margin: 15px 0;
+    overflow: visible;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.consola-header {
+    background: #2d2d3a;
+    padding: 8px 15px;
+    font-size: 12px;
+    font-family: monospace;
+    color: #a0a0b0;
+    border-bottom: 1px solid #3d3d4a;
+    flex-shrink: 0;
+}
+
+.consola-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    background: #0a0a0f;
+    min-height: 0;
+}
+
+/* Líneas de la consola */
+.consola-line {
+    padding: 3px 0;
+    border-bottom: 1px solid #1e1e2a;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.consola-line.success {
+    color: #89ca78;
+}
+
+.consola-line.error {
+    color: #f48771;
+}
+
+.consola-line.info {
+    color: #79c0ff;
+}
+
+/* Scrollbar consola */
+.consola-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.consola-output::-webkit-scrollbar-track {
+    background: #1e1e2a;
+    border-radius: 4px;
+}
+
+
+.consola-output::-webkit-scrollbar-thumb {
+    background: #4a4a5a;
+    border-radius: 4px;
+}
+
+.consola-output::-webkit-scrollbar-thumb:hover {
+    background: #6a6a7a;
+}
+
+/* Pregunta del ejercicio */
+.ejercicio .pregunta {
+    background: #1e1e2a;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 3px solid #ffb86c;
+    color: #d4d4d4;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.ejercicio .pregunta strong {
+    color: #ffb86c;
+}
+
+/* Código dentro de las instrucciones o preguntas */
+.ejercicio code {
+    background: #0a0a0f;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85rem;
+    color: #89ca78;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: #1e1e2f;
+    overflow-x: visible;
+    overflow-y: auto;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow: visible;
+    padding-bottom: 50px;  /* Espacio extra abajo */
+}
+
+#footer-placeholder {
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+.dropdown-content {
+    overflow-y: visible;  /* Que no limite el contenido */
+}
+
+.dropdown:last-child {
+    margin-bottom: 0;
+}
+
+body {
+    overflow-y: auto;
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+.dropdown-content::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Edge */
 }

@@ -1,0 +1,43 @@
+[
+    {
+        "modulo": 1,
+        "titulo": "Fundamentos",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Tu primera línea en la consola",
+                "instruccion": "Mostrá tu nombre y edad usando let y const.",
+                "codigoInicial": "let nombre = \"Sofi\";\nconst edad = 22;\n\nconsole.log(\"Hola, mi nombre es \" + nombre + \" y tengo \" + edad + \" años.\");\n\n// Probá cambiar los valores\n// ¿Qué pasa si intentás reasignar edad?",
+                "pregunta": "¿Qué pasa si intentás reasignar la variable declarada con const?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Presentación personal",
+                "instruccion": "Usando 3 variables (nombre, profesion, ciudad) mostrá este texto en consola: Hola! Soy Sofi, programadora de Neuquén.",
+                "codigoInicial": "let nombre = \"Sofi\";\nlet profesion = \"programadora\";\nlet ciudad = \"Neuquén\";\n\nconsole.log(\"Hola! Soy \" + nombre + \", \" + profesion + \" de \" + ciudad + \".\");",
+                "pregunta": "¿Qué pasa si cambiás el orden de las variables en el console.log?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Hoisting",
+                "instruccion": "¿Qué muestra el siguiente código por consola? Explicá paso a paso por qué.",
+                "codigoInicial": "console.log(a);\nconsole.log(b);\n\nvar a = 5;\nlet b = 10;\n\n// ¿Por qué a da undefined y b da error?",
+                "pregunta": "Explicá por qué a da undefined y b da error."
+            },
+            {
+                "numero": 4,
+                "titulo": "¿Qué tipo es?",
+                "instruccion": "Usá typeof para saber qué tipo de dato es cada uno de los siguientes valores. Después, confirmá tus respuestas ejecutando el código en la consola.",
+                "codigoInicial": "console.log(\"typeof 123:\", typeof 123);\nconsole.log('typeof \"hola\":', typeof \"hola\");\nconsole.log(\"typeof true:\", typeof true);\nconsole.log(\"typeof undefined:\", typeof undefined);\nconsole.log(\"typeof null:\", typeof null);\nconsole.log(\"typeof NaN:\", typeof NaN);\nconsole.log(\"typeof {}:\", typeof {});\nconsole.log(\"typeof []:\", typeof []);\nconsole.log(\"typeof function(){}:\", typeof function(){});\n\nlet dato = \"123\";\nconsole.log(\"El tipo de dato es: \" + typeof dato);\n\n// Probá cambiar dato por true, null, {}, etc.",
+                "pregunta": "¿Alguno te sorprendió? ¿Qué pasa con null, NaN, [] y function?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Conversor simple de temperatura",
+                "instruccion": "Convertí una temperatura en grados Celsius a Fahrenheit. Mostrá el resultado con un mensaje como \"25°C son 77°F\".",
+                "codigoInicial": "const celsius = 25;\nconst fahrenheit = (celsius * 9/5) + 32;\nconsole.log(celsius + \"°C son \" + fahrenheit + \"°F\");\n\n// ¿Podés reescribir el código para que el usuario ingrese el dato de celsius?",
+                "pregunta": "¿Podés reescribir el código para que el usuario ingrese el dato de celsius?"
+            }
+        ]
+    }
+]
