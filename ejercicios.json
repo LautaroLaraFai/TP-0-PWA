@@ -39,5 +39,210 @@
                 "pregunta": "¿Podés reescribir el código para que el usuario ingrese el dato de celsius?"
             }
         ]
+    },
+    {
+        "modulo": 2,
+        "titulo": "Estructuras de control",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Validador de edad para cine",
+                "instruccion": "Pedile al usuario su edad y mostrá 'Puede entrar al cine' si tiene 18 o más años. En caso contrario, mostrá 'No puede entrar'.",
+                "codigoInicial": "const edad = Number(prompt(\"¿Cuál es tu edad?\"));\nif (edad >= 18) {\n  console.log(\"Puede entrar al cine\");\n} else {\n  console.log(\"No puede entrar\");\n}",
+                "pregunta": "¿Qué pasa si el usuario ingresa un valor que no es un número? ¿Cómo podrías validarlo?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Calculadora de propina",
+                "instruccion": "Pedile al usuario el monto de la cuenta y calculá la propina del 10%. Mostrá un mensaje con el total y la propina sugerida.",
+                "codigoInicial": "const monto = Number(prompt(\"¿Cuál es el monto de la cuenta?\"));\nconst propina = monto * 0.1;\nconsole.log(`El total es $${monto}. La propina sugerida es $${propina}`);",
+                "pregunta": "¿Cómo harías para redondear la propina a dos decimales?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Predicción de operaciones",
+                "instruccion": "Predecí y explicá el resultado de cada expresión. Luego ejecutá el código en la consola y compará con tu predicción.",
+                "codigoInicial": "console.log(10 + \"190\");\nconsole.log(\"8\" * \"4\");\nconsole.log(true + false);\nconsole.log(null + 1);\nconsole.log(undefined + 1);",
+                "pregunta": "¿Por qué 10 + '190' da '10190' y '8' * '4' da 32? Explicá la coerción de tipos en cada caso."
+            },
+            {
+                "numero": 4,
+                "titulo": "Validador de ingreso a un club secreto",
+                "instruccion": "Pedile al usuario su edad y una palabra clave. Solo puede ingresar si tiene 21 años o más y si la palabra clave es exactamente 'snorlax'.",
+                "codigoInicial": "const edad = Number(prompt(\"¿Cuál es tu edad?\"));\nconst clave = prompt(\"Decí la palabra clave:\");\n\nif (edad >= 21 && clave === \"snorlax\") {\n    console.log(\"Bienvenido al club secreto\");\n} else {\n    console.log(\"No puedes ingresar\");\n}",
+                "pregunta": "¿Qué pasa si el usuario escribe 'SNORLAX' en mayúsculas? ¿Cómo podrías solucionarlo?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Simulador de sueldo con bonus y retenciones",
+                "instruccion": "Pedile al usuario su sueldo base, si tiene bonus y si tiene hijos. Aplicá las reglas: si tiene bonus +10%, si tiene hijos -5%, luego aplicá 15% de retención final.",
+                "codigoInicial": "let sueldoBase = Number(prompt(\"Sueldo base:\"));\nlet tieneBonus = prompt(\"¿Tiene bonus? (sí/no)\");\nlet tieneHijos = prompt(\"¿Tiene hijos? (sí/no)\");\n\nif (tieneBonus === \"sí\") {\n    sueldoBase = sueldoBase * 1.1;\n}\n\nif (tieneHijos === \"sí\") {\n    sueldoBase = sueldoBase * 0.95;\n}\n\nconst sueldoFinal = sueldoBase * 0.85;\nconsole.log(\"Tu sueldo final es $\" + sueldoFinal);",
+                "pregunta": "¿Qué pasa si el usuario escribe 'SI' en mayúsculas? ¿Cómo podrías mejorar la validación?"
+            },
+            {
+                "numero": 6,
+                "titulo": "Clasificador de clientes premium",
+                "instruccion": "Pedile al usuario la cantidad de compras y el monto total gastado. Clasificalo en Premium, Regular o Básico según las condiciones.",
+                "codigoInicial": "const compras = Number(prompt(\"Cantidad de compras:\"));\nconst monto = Number(prompt(\"Monto total gastado:\"));\n\nif (compras > 10 && monto > 100000) {\n    console.log(\"Cliente Premium: gracias por tu fidelidad!!\");\n} else if (compras >= 5 || monto > 50000) {\n    console.log(\"Cliente Regular\");\n} else {\n    console.log(\"Cliente Básico\");\n}",
+                "pregunta": "¿Qué condiciones debe cumplir un cliente para ser Premium? ¿Y para ser Regular?"
+            }
+        ]
+    },
+    {
+        "modulo": 3,
+        "titulo": "Funciones y batallas Pokémon",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Calculadora de daño",
+                "instruccion": "Creá una función calcularDanio(ataque, defensa, critico) que reciba ataque, defensa y un booleano critico. Si critico es true, duplica el daño. Si el resultado es menor a 0, devuelve 0.",
+                "codigoInicial": "function calcularDanio(ataque, defensa, critico) {\n    let danio = ataque - defensa;\n    if (critico) {\n        danio = danio * 2;\n    }\n    if (danio < 0) {\n        return 0;\n    }\n    return danio;\n}\n\nconsole.log(calcularDanio(50, 30, true));\nconsole.log(calcularDanio(20, 30, false));\nconsole.log(calcularDanio(40, 20, true));",
+                "pregunta": "¿Qué pasa si el crítico es true pero el daño base es 0 o negativo? ¿Cómo afecta la multiplicación?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Evolución de Pokémon",
+                "instruccion": "Creá una función puedeEvolucionar(nombre, nivel) que reciba el nombre del Pokémon y su nivel, y devuelva un mensaje según las reglas de evolución.",
+                "codigoInicial": "function puedeEvolucionar(nombre, nivel) {\n    if (nombre === \"Charmander\" && nivel >= 16) {\n        return \"Charmander evolucionó a Charmeleon\";\n    } else if (nombre === \"Bulbasaur\" && nivel >= 15) {\n        return \"Bulbasaur evolucionó a Ivysaur\";\n    } else if (nombre === \"Squirtle\" && nivel >= 18) {\n        return \"Squirtle evolucionó a Wartortle\";\n    } else {\n        return \"Todavía no puede evolucionar\";\n    }\n}\n\nconsole.log(puedeEvolucionar(\"Charmander\", 16));\nconsole.log(puedeEvolucionar(\"Bulbasaur\", 10));\nconsole.log(puedeEvolucionar(\"Squirtle\", 20));",
+                "pregunta": "¿Qué pasa si el Pokémon no está en la lista? ¿Cómo podrías manejar ese caso?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Batalla Pokémon",
+                "instruccion": "Creá una función batalla(atacante, defensor, ataque, poder, defensa, critico) que use calcularDanio y muestre el resultado del ataque.",
+                "codigoInicial": "function calcularDanio(ataque, defensa, critico) {\n    let danio = ataque - defensa;\n    if (critico) danio = danio * 2;\n    return danio < 0 ? 0 : danio;\n}\n\nfunction batalla(atacante, defensor, ataque, poder, defensa, critico) {\n    let danio = calcularDanio(poder, defensa, critico);\n    console.log(`¡${atacante} usó ${ataque} contra ${defensor}! Causó ${danio} de daño.`);\n    if (danio >= 50) {\n        console.log(`¡${defensor} ha sido derrotado!`);\n    } else {\n        console.log(`${defensor} sigue en pie.`);\n    }\n}\n\nbatalla(\"Pikachu\", \"Meowth\", \"Impactrueno\", 70, 20, false);",
+                "pregunta": "¿Qué cambiarías para que el daño se reste a la vida del defensor y se pueda hacer múltiples ataques?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Batalla por turnos con estrategia real",
+                "instruccion": "Creá una función calcularDanio(ataque, defensa, critico) que retorne el daño calculado. Luego implementá una batalla por turnos entre el jugador y la computadora usando promp",
+                "codigoInicial": "// Esta función ya la tenés del ejercicio 1\nfunction calcularDanio(ataque, defensa, critico) {\n    let danio = ataque - defensa;\n    if (critico) danio = danio * 2;\n    return danio < 0 ? 0 : danio;\n}\n\n// Función para generar valores aleatorios\nfunction valorAleatorio(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\n// Implementá la batalla acá\nlet vidaJugador = 100;\nlet vidaEnemigo = 100;\n\nfor (let turno = 1; turno <= 5 && vidaJugador > 0 && vidaEnemigo > 0; turno++) {\n    console.log(`\\n=== Turno ${turno} ===`);\n    console.log(`Tu vida: ${vidaJugador} | Enemigo: ${vidaEnemigo}`);\n    \n    // Completá el código\n}",
+                "pregunta": "¿Cómo harías para que el enemigo tenga diferentes estrategias (más agresivo o más defensivo) según su vida?"
+            }
+        ]
+    },
+    {
+        "modulo": 5,
+        "titulo": "Manejo de arrays y objetos",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Promedio de años de estreno",
+                "instruccion": "Escribí una función que devuelva el promedio del año de estreno de todas las películas.",
+                "codigoInicial": "const basededatos = {\n  peliculas: [\n    { id: 1, nombre: \"Matrix\", anio: 1999 },\n    { id: 2, nombre: \"Cloud Atlas\", anio: 2012 },\n    { id: 3, nombre: \"Inception\", anio: 2010 }\n  ]\n};\n\nfunction promedioAnioEstreno() {\n    // Completá el código\n}\n\nconsole.log(promedioAnioEstreno());",
+                "pregunta": "¿Cómo harías para redondear el promedio a dos decimales?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Películas con buena crítica",
+                "instruccion": "Escribí una función que devuelva un array con todas las películas que tienen promedio de críticas mayor a un valor dado.",
+                "codigoInicial": "const basededatos = {\n  peliculas: [\n    { id: 1, nombre: \"Matrix\" },\n    { id: 2, nombre: \"Cloud Atlas\" }\n  ],\n  calificaciones: [\n    { pelicula: 1, puntuacion: 8 },\n    { pelicula: 1, puntuacion: 7 },\n    { pelicula: 2, puntuacion: 6 }\n  ]\n};\n\nfunction peliculasConCriticaPromedioMayorA(valor) {\n    // Completá el código\n}\n\nconsole.log(peliculasConCriticaPromedioMayorA(7));",
+                "pregunta": "¿Qué pasa si una película no tiene críticas? ¿Cómo deberías manejarlo?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Películas dirigidas por alguien",
+                "instruccion": "Escribí una función que reciba el nombre de un director y devuelva todas las películas que dirigió.",
+                "codigoInicial": "const basededatos = {\n  peliculas: [\n    { id: 1, nombre: \"Matrix\", directores: [2] },\n    { id: 2, nombre: \"Cloud Atlas\", directores: [2] }\n  ],\n  directores: [\n    { id: 2, nombre: \"Lilly Wachowski\" }\n  ]\n};\n\nfunction peliculasDeUnDirector(nombreDirector) {\n    // Completá el código\n}\n\nconsole.log(peliculasDeUnDirector(\"Lilly Wachowski\"));",
+                "pregunta": "¿Qué pasa si un director no tiene películas? ¿Qué debería devolver la función?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Promedio de crítica de una película",
+                "instruccion": "Escribí una función que reciba el id de una película y devuelva su promedio de puntuaciones.",
+                "codigoInicial": "const basededatos = {\n  calificaciones: [\n    { pelicula: 1, puntuacion: 8 },\n    { pelicula: 1, puntuacion: 7 },\n    { pelicula: 2, puntuacion: 6 }\n  ]\n};\n\nfunction promedioDeCriticaPorPeliculaId(idPelicula) {\n    // Completá el código\n}\n\nconsole.log(promedioDeCriticaPorPeliculaId(1));",
+                "pregunta": "¿Qué debería devolver si la película no tiene críticas?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Películas con al menos una crítica excelente",
+                "instruccion": "Devuelve todas las películas que tienen al menos una crítica con puntuación >= 9.",
+                "codigoInicial": "const basededatos = {\n  peliculas: [\n    { id: 1, nombre: \"Matrix\" },\n    { id: 2, nombre: \"Cloud Atlas\" }\n  ],\n  calificaciones: [\n    { pelicula: 1, puntuacion: 9 },\n    { pelicula: 1, puntuacion: 7 },\n    { pelicula: 2, puntuacion: 6 }\n  ]\n};\n\nfunction peliculasConCriticaExcelente() {\n    // Completá el código\n}\n\nconsole.log(peliculasConCriticaExcelente());",
+                "pregunta": "¿Qué método de array usarías para verificar si existe al menos una crítica que cumpla la condición?"
+            },
+            {
+                "numero": 6,
+                "titulo": "Información expandida de una película",
+                "instruccion": "Dado el nombre de una película, devolvé un objeto con toda su información expandida.",
+                "codigoInicial": "const basededatos = {\n  peliculas: [\n    { id: 1, nombre: \"Matrix\", directores: [2], generos: [1] },\n    { id: 2, nombre: \"Cloud Atlas\", directores: [2], generos: [2] }\n  ],\n  directores: [{ id: 2, nombre: \"Lilly Wachowski\" }],\n  generos: [\n    { id: 1, nombre: \"Ciencia Ficción\" },\n    { id: 2, nombre: \"Drama\" }\n  ],\n  calificaciones: [\n    { pelicula: 1, puntuacion: 8, critico: 1 },\n    { pelicula: 2, puntuacion: 6, critico: 1 }\n  ],\n  criticos: [{ id: 1, nombre: \"Pipo\", pais: 1 }],\n  paises: [{ id: 1, nombre: \"Argentina\" }]\n};\n\nfunction informacionExpandidaDePelicula(nombrePelicula) {\n    // Completá el código\n}\n\nconsole.log(informacionExpandidaDePelicula(\"Matrix\"));",
+                "pregunta": "¿Qué pasa si la película no existe?"
+            }
+        ]
+    },
+    {
+        "modulo": 6,
+        "titulo": "Programación funcional",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Filtrado de Pokémon",
+                "instruccion": "Crea una función filtrarPokemon(pokemones, criterio) que reciba un array de Pokémon y una función criterio, y devuelva un nuevo array con los que cumplan el criterio.",
+                "codigoInicial": "const pokemones = [\n  { nombre: \"Pikachu\", nivel: 20, tipo: \"eléctrico\" },\n  { nombre: \"Squirtle\", nivel: 15, tipo: \"agua\" },\n  { nombre: \"Charmander\", nivel: 18, tipo: \"fuego\" }\n];\n\nfunction filtrarPokemon(array, criterio) {\n    // Completá el código\n}\n\nconst pokemonesFuertes = filtrarPokemon(pokemones, p => p.nivel > 18);\nconst pokemonesAgua = filtrarPokemon(pokemones, p => p.tipo === \"agua\");\n\nconsole.log(pokemonesFuertes);\nconsole.log(pokemonesAgua);",
+                "pregunta": "¿Qué diferencia hay entre usar filter directamente y crear tu propia función filtrarPokemon?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Reclutamiento de personajes",
+                "instruccion": "Crea una función reclutar(personajes, criterio) que devuelva un array con los personajes que cumplan el criterio.",
+                "codigoInicial": "const personajes = [\n  { nombre: \"Frodo\", raza: \"Hobbit\", valiente: true },\n  { nombre: \"Sam\", raza: \"Hobbit\", valiente: true },\n  { nombre: \"Gandalf\", raza: \"Mago\", valiente: true },\n  { nombre: \"Gollum\", raza: \"Hobbit\", valiente: false }\n];\n\nfunction reclutar(array, criterio) {\n    // Completá el código\n}\n\nconst hobbitsValientes = reclutar(personajes, p => p.raza === \"Hobbit\" && p.valiente);\nconsole.log(hobbitsValientes);",
+                "pregunta": "¿Cómo harías para que la función también acepte un límite de cantidad a reclutar?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Laboratorio de Inventos",
+                "instruccion": "Crea una clase Laboratorio con métodos agregarInvento(nombre, efecto) y aplicarInvento(nombre, sujeto).",
+                "codigoInicial": "class Laboratorio {\n    constructor() {\n        this.inventos = [];\n    }\n    \n    // Completá los métodos\n}\n\nconst lab = new Laboratorio();\nconst sujeto = { vida: 100, inteligencia: 50 };\n\nlab.agregarInvento(\"Ray Gun\", sujeto => sujeto.vida -= 30);\nlab.agregarInvento(\"Suero de Inteligencia\", sujeto => sujeto.inteligencia += 50);\n\nlab.aplicarInvento(\"Ray Gun\", sujeto);\nlab.aplicarInvento(\"Suero de Inteligencia\", sujeto);\n\nconsole.log(sujeto);",
+                "pregunta": "¿Qué pasa si intentás aplicar un invento que no existe?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Creación de Equipos",
+                "instruccion": "Crea una función crearEquipo(nombre) que devuelva un objeto con métodos para agregar y listar miembros, y usar habilidades especiales.",
+                "codigoInicial": "function crearEquipo(nombre) {\n    const miembros = [];\n    \n    return {\n        nombre,\n        // Completá los métodos\n    };\n}\n\nconst rebels = crearEquipo(\"Rebeldes\");\nrebels.agregar({ nombre: \"Leia\", fuerza: 70, habilidadEspecial: () => console.log(\"¡Estrategia diplomática!\") });\n\nrebels.usarHabilidadEspecial(\"Leia\");\nconsole.log(rebels.listar());",
+                "pregunta": "¿Cómo harías para que los miembros no puedan ser modificados desde fuera del equipo?"
+            }
+        ]
+    },
+    {
+        "modulo": 7,
+        "titulo": "Asincronía y Promesas",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Entrenador Pokémon con evolución",
+                "instruccion": "Crea la función entrenarPokemon(pokemon) que devuelva una promesa que resuelve aumentando el nivel en 2 segundos.",
+                "codigoInicial": "function entrenarPokemon(pokemon) {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            pokemon.nivel++;\n            if (pokemon.nombre === \"Pikachu\" && pokemon.nivel >= 3) {\n                console.log(`¡${pokemon.nombre} evolucionó a Raichu!`);\n            }\n            resolve(pokemon);\n        }, 2000);\n    });\n}\n\nconst pikachu = { nombre: \"Pikachu\", nivel: 2 };\n\nentrenarPokemon(pikachu)\n    .then(p => entrenarPokemon(p))\n    .then(p => entrenarPokemon(p))\n    .catch(console.error);",
+                "pregunta": "¿Qué pasa si el Pokémon no puede evolucionar? ¿Cómo manejarías ese caso?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Carga de datos galácticos",
+                "instruccion": "Creá una función obtenerJedi(id) que devuelva una promesa con delay de 1 segundo. Luego creá mostrarJedi(id) con async/await.",
+                "codigoInicial": "function obtenerJedi(id) {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            if (id && id >= 1) {\n                resolve({ id: id, nombre: \"Obi-Wan\", nivel: \"Maestro\" });\n            } else {\n                reject(\"ID inválido\");\n            }\n        }, 1000);\n    });\n}\n\nasync function mostrarJedi(id) {\n    // Completá el código\n}\n\nmostrarJedi(1);",
+                "pregunta": "¿Qué pasa si la promesa se rechaza? ¿Cómo lo capturás con async/await?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Jedi + prueba en el Templo",
+                "instruccion": "Creá una función evaluarPrueba(jedi) que espere 3 segundos y muestre un mensaje según el nivel del Jedi.",
+                "codigoInicial": "function obtenerJedi(id) {\n    return new Promise((resolve) => {\n        setTimeout(() => {\n            resolve({ id: id, nombre: \"Anakin\", nivel: \"Padawan\" });\n        }, 1000);\n    });\n}\n\nfunction evaluarPrueba(jedi) {\n    return new Promise((resolve) => {\n        setTimeout(() => {\n            if (jedi.nivel === \"Maestro\") {\n                console.log(`${jedi.nombre} pasó la prueba con sabiduría.`);\n            } else {\n                console.log(`${jedi.nombre} necesita más entrenamiento.`);\n            }\n            resolve();\n        }, 3000);\n    });\n}\n\nasync function realizarPrueba(id) {\n    // Completá el código\n}\n\nrealizarPrueba(2);",
+                "pregunta": "¿Cómo harías para que ambas promesas se ejecuten en paralelo si no dependen una de la otra?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Evolución Pokémon con piedras",
+                "instruccion": "Creá una función usarPiedraEvolutiva(pokemon, piedra) que devuelva una promesa con delay de 3 segundos.",
+                "codigoInicial": "const evoluciones = {\n    Eevee: {\n        piedraFuego: \"Flareon\",\n        piedraAgua: \"Vaporeon\",\n        piedraTrueno: \"Jolteon\"\n    },\n    Pikachu: {\n        piedraTrueno: \"Raichu\"\n    }\n};\n\nfunction usarPiedraEvolutiva(pokemon, piedra) {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            const evolucion = evoluciones[pokemon.nombre]?.[piedra];\n            if (evolucion) {\n                resolve({ nombre: evolucion, evolucionado: true });\n            } else {\n                reject(`${pokemon.nombre} no puede evolucionar con ${piedra}.`);\n            }\n        }, 3000);\n    });\n}\n\nasync function intentarEvolucion(pokemon, piedra) {\n    // Completá el código\n}\n\nintentarEvolucion({ nombre: \"Eevee\" }, \"piedraFuego\");",
+                "pregunta": "¿Cómo harías para que se puedan encadenar varias evoluciones (ej: Eevee → Flareon → algo más)?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Explorador Galáctico - Star Wars API",
+                "instruccion": "Usá fetch y async/await para obtener datos de la API de Star Wars.",
+                "codigoInicial": "// a) Mostrar los primeros 5 personajes con nombre y altura\nasync function mostrarPersonajes() {\n    // Completá el código\n}\n\n// b) Mostrar el planeta natal de Luke Skywalker\nasync function mostrarPlanetaLuke() {\n    // Completá el código\n}\n\n// c) Mostrar planetas con clima árido\nasync function mostrarPlanetasAridos() {\n    // Completá el código\n}\n\n// d) Mostrar la nave más grande\nasync function mostrarNaveMasGrande() {\n    // Completá el código\n}\n\n// e) Mostrar información completa de una película\nasync function mostrarPelicula(id) {\n    // Completá el código\n}\n\n// Ejecutá las funciones\n// mostrarPersonajes();\n// mostrarPlanetaLuke();\n// mostrarPlanetasAridos();\n// mostrarNaveMasGrande();\n// mostrarPelicula(1);",
+                "pregunta": "¿Por qué es necesario usar async/await con fetch? ¿Qué pasa si no esperás la respuesta?"
+            }
+        ]
     }
 ]

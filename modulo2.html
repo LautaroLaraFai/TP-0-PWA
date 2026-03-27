@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2 - Estructuras de control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+                <!-- Ejercicio 1 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencia hay entre == y === en JavaScript? Mostrá un ejemplo donde den resultados distintos y explicá por qué.</strong></p>
+                        <p><code>==</code> compara valor después de coerción. <code>===</code> compara valor y tipo sin coerción.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">console.log(2 == "2");  // true (coerción)</div>
+                                <div class="consola-line error">console.log(2 === "2"); // false (tipos diferentes)</div>
+                            </div>
+                        </div>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>💡 Conclusión:</strong> Usá <code>===</code> para evitar resultados inesperados.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 2 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la coerción de tipos? Mostrá dos ejemplos de coerción implícita y uno de coerción explícita.</strong></p>
+                        <p>Es la conversión automática o manual de un valor a otro tipo de dato.</p>
+                        <p><strong>Coerción implícita (automática):</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplos</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">console.log("5" - 3);   // 2 (string a número)</div>
+                                <div class="consola-line success">console.log("2" + 2);   // "22" (número a string)</div>
+                            </div>
+                        </div>
+                        <p><strong>Coerción explícita (manual):</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplos</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">Number("123")   // 123</div>
+                                <div class="consola-line success">String(456)     // "456"</div>
+                                <div class="consola-line success">Boolean(0)      // false</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 3 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué resultado devuelve una expresión como false || "hola" o "hola" && 0? Explicá el rol de los operadores lógicos en esos casos.</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplos</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">false || "hola"   // "hola" (primer truthy)</div>
+                                <div class="consola-line success">"hola" && 0       // 0 (primer falsy)</div>
+                            </div>
+                        </div>
+                        <p><strong>|| (OR):</strong> Devuelve el primer valor truthy. Si todos son falsy, devuelve el último.</p>
+                        <p><strong>&& (AND):</strong> Devuelve el primer valor falsy. Si todos son truthy, devuelve el último.</p>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>💡 Tip:</strong> No devuelven true/false, devuelven el valor original.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 4 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuáles son las principales estructuras de control de flujo en JavaScript? Mencioná if, else, switch, y explicá brevemente en qué casos conviene usar cada uno.</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">if</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">if (edad >= 18) { console.log("Mayor de edad"); }</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">else</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">else { console.log("Menor de edad"); }</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">switch</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">switch(dia) {<br>
+                                &nbsp;&nbsp;case "lunes": console.log("Inicio"); break;<br>
+                                &nbsp;&nbsp;case "viernes": console.log("Fin"); break;<br>
+                                &nbsp;&nbsp;default: console.log("Normal");<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>📌 Cuándo usar:</strong> <code>if/else</code> para condiciones o rangos. <code>switch</code> para comparar un mismo valor contra múltiples opciones exactas.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 5 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Para qué sirve el operador ternario (condición ? a : b)? Reescribí un if simple con este operador.</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">if/else tradicional</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">
+                                if (edad >= 18) {<br>
+                                &nbsp;&nbsp;console.log("Mayor");<br>
+                                } else {<br>
+                                &nbsp;&nbsp;console.log("Menor");<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Operador ternario</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">edad >= 18 ? console.log("Mayor") : console.log("Menor");</div>
+                            </div>
+                        </div>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>⚠️ Importante:</strong> Usar solo para expresiones simples. Para lógica compleja, mejor if/else.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 6 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo funcionan los bucles for y while en JavaScript? Mostrá un ejemplo de cada uno.</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">for (se sabe cuántas veces)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">for (let i = 0; i < 5; i++) {<br>
+                                &nbsp;&nbsp;console.log("Vuelta " + i);<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">while (no se sabe cuántas veces)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let contador = 0;<br>
+                                while (contador < 5) {<br>
+                                &nbsp;&nbsp;console.log("Contador: " + contador);<br>
+                                &nbsp;&nbsp;contador++;<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>📌 Diferencia:</strong> <code>for</code> tiene contador incorporado. <code>while</code> solo tiene condición.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejercicio 7 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué hacen break y continue dentro de un bucle? ¿Qué efecto tienen en la ejecución del código?</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">break (termina el bucle)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">for (let i = 0; i < 10; i++) {<br>
+                                &nbsp;&nbsp;if (i === 5) break;<br>
+                                &nbsp;&nbsp;console.log(i);  // 0,1,2,3,4<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">continue (salta a la siguiente vuelta)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">for (let i = 0; i < 5; i++) {<br>
+                                &nbsp;&nbsp;if (i === 2) continue;<br>
+                                &nbsp;&nbsp;console.log(i);  // 0,1,3,4<br>
+                                }</div>
+                            </div>
+                        </div>
+                        <div class="pregunta" style="margin-top: 10px;">
+                            <strong>📌 Resumen:</strong> <code>break</code> sale del bucle. <code>continue</code> salta a la siguiente iteración.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <label for="practica-toggle" class="dropdown-title">
+                <h2>Práctica</h2>
+            </label>
+            <input type="checkbox" id="practica-toggle" class="dropdown-toggle">
+            <div class="dropdown-content" id="dropdown-practica">
+                <div id="ejercicio-practica-container">
+                    <!-- Los ejercicios se cargan dinámicamente desde JSON -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+</body>
+<script src="./loader.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        history.pushState({}, "", "?modulo=2");
+    });
+</script>
+</html>

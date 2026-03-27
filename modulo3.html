@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+
+        </div>
+
+        <div class="dropdown">
+            <label for="practica-toggle" class="dropdown-title">
+                <h2>Práctica</h2>
+            </label>
+            <input type="checkbox" id="practica-toggle" class="dropdown-toggle">
+            <div class="dropdown-content" id="dropdown-practica">
+                <div id="ejercicio-practica-container">
+                    <!-- Los ejercicios se cargan dinámicamente desde JSON -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            history.pushState({}, "", "?modulo=3");
+        });
+    </script>
+</body>
+</html>

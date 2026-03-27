@@ -121,6 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarComponente('footer-placeholder', 'footer.html');
     
     let params = new URLSearchParams(window.location.search);
-    let modulo = parseInt(params.get("modulo")) || 1;
+    let modulo = parseInt(params.get("modulo"));
     generarEjercicios(modulo);
 });
