@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5 - Programación Funcional</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la programación funcional y cómo se relaciona con los métodos de array en JavaScript?</strong></p>
+                        <p>La programación funcional es un paradigma de programación declarativo basado en el uso de funciones matemáticas para transformar datos. En JavaScript, la programación funcional prioriza la inmutabilidad y el uso de funciones de orden superior. Los métodos de array como <code>map()</code>, <code>filter()</code> y <code>reduce()</code> demuestran este enfoque porque, en lugar de modificar el array original, devuelven un nuevo array con los cambios aplicados, manteniendo los datos originales intactos.</p>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuál es la diferencia entre .map(), .filter() y .reduce()?</strong></p>
+                        <ul>
+                            <li><strong>.map()</strong>: Aplica una función a cada elemento del array y devuelve un nuevo array con los resultados.</li>
+                            <li><strong>.filter()</strong>: Crea un nuevo array con los elementos que cumplen una condición.</li>
+                            <li><strong>.reduce()</strong>: Reduce el array a un único valor (suma, promedio, concatenación, etc.).</li>
+                        </ul>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3, 4, 5];</div>
+                                <div class="consola-line success">let dobles = numeros.map(n => n * 2);     // [2, 4, 6, 8, 10]</div>
+                                <div class="consola-line success">let pares = numeros.filter(n => n % 2 === 0); // [2, 4]</div>
+                                <div class="consola-line success">let suma = numeros.reduce((acc, n) => acc + n, 0); // 15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la inmutabilidad y por qué es importante en la programación funcional?</strong></p>
+                        <p>La inmutabilidad es la propiedad de los datos que impide que sean modificados después de su creación. En lugar de cambiar los datos existentes, la programación funcional promueve crear <strong>nuevos datos</strong> a partir de los originales. Esto evita efectos secundarios no deseados, hace el código más predecible y facilita la depuración.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3];</div>
+                                <div class="consola-line success">let nuevos = numeros.map(n => n * 2); // Crea un nuevo array</div>
+                                <div class="consola-line success">console.log(numeros); // [1, 2, 3] (original intacto)</div>
+                                <div class="consola-line success">console.log(nuevos);  // [2, 4, 6] (nuevo array)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo funcionan los callbacks en JavaScript? Explicá con un ejemplo.</strong></p>
+                        <p>Un callback es una función que se pasa como argumento a otra función y se ejecuta cuando esa función termina. Es una forma de controlar el flujo de ejecución, especialmente en operaciones asincrónicas.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function saludar(nombre) {</div>
+                                <div class="consola-line success">    console.log("Hola " + nombre);</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">function procesarEntradaUsuario(callback) {</div>
+                                <div class="consola-line success">    let nombre = prompt("Por favor ingresa tu nombre:");</div>
+                                <div class="consola-line success">    callback(nombre);</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">procesarEntradaUsuario(saludar); // "Hola [nombre]"</div>
+                            </div>
+                        </div>
+                        <p>En este ejemplo, <code>saludar</code> es el callback. Se pasa a <code>procesarEntradaUsuario</code> y se ejecuta después de obtener el nombre.</p>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el método .some() y en qué casos se utiliza?</strong></p>
+                        <p><code>.some()</code> es un método que recorre un array y devuelve <code>true</code> si al menos un elemento cumple con la condición especificada. Si ningún elemento cumple, devuelve <code>false</code>. Se utiliza para verificar si existe al menos un elemento que cumpla una condición.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3, 4, 5];</div>
+                                <div class="consola-line success">let hayMayorQue3 = numeros.some(n => n > 3); // true</div>
+                                <div class="consola-line success">let hayNegativo = numeros.some(n => n < 0);   // false</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el método .find() y cómo se diferencia de .filter()?</strong></p>
+                        <p><code>.find()</code> devuelve el <strong>primer elemento</strong> que cumple la condición. <code>.filter()</code> devuelve <strong>todos los elementos</strong> que cumplen la condición en un nuevo array. Si no encuentra nada, <code>.find()</code> devuelve <code>undefined</code> y <code>.filter()</code> devuelve un array vacío.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3, 4, 5];</div>
+                                <div class="consola-line success">let primerMayor = numeros.find(n => n > 2);  // 3</div>
+                                <div class="consola-line success">let todosMayores = numeros.filter(n => n > 2); // [3, 4, 5]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se puede combinar .map() con .filter() para transformar y filtrar datos?</strong></p>
+                        <p>Se pueden encadenar ambos métodos para primero filtrar los elementos que interesan y luego transformarlos.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">const numeros = [1, 2, 3, 4, 5, 6];</div>
+                                <div class="consola-line success">const resultado = numeros</div>
+                                <div class="consola-line success">    .filter(num => num % 2 !== 0) // Filtra impares: [1, 3, 5]</div>
+                                <div class="consola-line success">    .map(num => num * 2);         // Multiplica por 2: [2, 6, 10]</div>
+                                <div class="consola-line success">console.log(resultado); // [2, 6, 10]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 8</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la desestructuración de arrays y para qué sirve?</strong></p>
+                        <p>La desestructuración de arrays es una sintaxis que permite extraer valores de un array y asignarlos a variables de forma más concisa. Sirve para acceder rápidamente a elementos específicos sin usar índices repetidamente.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let colores = ["rojo", "azul", "verde"];</div>
+                                <div class="consola-line success">// Sin desestructuración</div>
+                                <div class="consola-line success">let primero = colores[0];</div>
+                                <div class="consola-line success">let segundo = colores[1];</div>
+                                <div class="consola-line success">// Con desestructuración</div>
+                                <div class="consola-line success">let [rojo, azul, verde] = colores;</div>
+                                <div class="consola-line success">console.log(rojo);  // "rojo"</div>
+                                <div class="consola-line success">console.log(azul);  // "azul"</div>
+                                <div class="consola-line success">// Omitir elementos</div>
+                                <div class="consola-line success">let [primero, , tercero] = colores;</div>
+                                <div class="consola-line success">console.log(primero); // "rojo"</div>
+                                <div class="consola-line success">console.log(tercero); // "verde"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 9</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se puede usar el operador spread (...) con arrays?</strong></p>
+                        <p>El operador spread (<code>...</code>) permite expandir los elementos de un array en lugares donde se esperan múltiples elementos. Se usa para combinar arrays, copiar arrays o pasar elementos como argumentos.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let miArray1 = [1, 2, 3];</div>
+                                <div class="consola-line success">let miArray2 = [4, 5, 6];</div>
+                                <div class="consola-line success">// Combinar arrays</div>
+                                <div class="consola-line success">let combinado = [...miArray1, ...miArray2]; // [1, 2, 3, 4, 5, 6]</div>
+                                <div class="consola-line success">// Copiar array</div>
+                                <div class="consola-line success">let copia = [...miArray1]; // [1, 2, 3]</div>
+                                <div class="consola-line success">// Pasar elementos como argumentos</div>
+                                <div class="consola-line success">let maximo = Math.max(...miArray1); // 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 10</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el método .flatMap() y en qué casos es útil?</strong></p>
+                        <p><code>.flatMap()</code> primero aplica una función a cada elemento (como <code>.map()</code>) y luego aplana el resultado en un solo nivel (como <code>.flat()</code>). Es útil cuando cada elemento del array se transforma en múltiples elementos y se quiere obtener un array plano como resultado.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let frases = ["hola mundo", "javascript es genial"];</div>
+                                <div class="consola-line success">// Con .map() + .flat()</div>
+                                <div class="consola-line success">let palabras = frases.map(frase => frase.split(" ")).flat();</div>
+                                <div class="consola-line success">// ["hola", "mundo", "javascript", "es", "genial"]</div>
+                                <div class="consola-line success">// Con .flatMap() (mismo resultado)</div>
+                                <div class="consola-line success">let palabras2 = frases.flatMap(frase => frase.split(" "));</div>
+                                <div class="consola-line success">// También sirve para filtrar y mapear en un solo paso</div>
+                                <div class="consola-line success">let numeros = [1, 2, 3];</div>
+                                <div class="consola-line success">let duplicados = numeros.flatMap(n => [n, n]); // [1, 1, 2, 2, 3, 3]</div>
+                            </div>
+                        </div>
+                        <p><strong>Casos de uso:</strong> Transformar arrays de arrays en un solo nivel, separar strings en palabras, duplicar elementos, o combinar mapeo y filtrado en una sola operación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <label for="practica-toggle" class="dropdown-title">
+                <h2>Práctica</h2>
+            </label>
+            <input type="checkbox" id="practica-toggle" class="dropdown-toggle">
+            <div class="dropdown-content" id="dropdown-practica">
+                <div id="ejercicio-practica-container">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            history.pushState({}, "", "?modulo=5");
+        });
+    </script>
+</body>
+</html>

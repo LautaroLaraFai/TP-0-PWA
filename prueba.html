@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Cuadrada</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            aspect-ratio: 1 / 1;
+            max-width: 500px;
+            margin: 20px;
+            border: 2px solid black;
+            position: relative;
+        }
+        
+        .pixel {
+            background-color: whitesmoke;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            transition: border .1s ease;
+            user-select: none;
+            aspect-ratio: 1 / 1;
+        }
+        
+        .pixel:hover {
+            border: 2px solid rgb(94, 191, 158);
+        }
+        
+        #toolbar {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="toolbar">
+        <button class="color-btn" data-color="red">🔴 Rojo</button>
+        <button class="color-btn" data-color="blue">🔵 Azul</button>
+        <button class="color-btn" data-color="green">🟢 Verde</button>
+        <button class="color-btn" data-color="yellow">🟡 Amarillo</button>
+        <button class="color-btn" data-color="brown">🟤 Marrón</button>
+        <button class="color-btn" data-color="salmon">🐟 Salmón</button>
+        <button class="color-btn" data-color="black">⚫ Negro</button>
+        <button id="borrador">🧽 Borrador</button>
+        <button id="limpiarTodo">🗑️ Limpiar todo</button>
+    </div>
+    
+    <div class="container" id="container"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('container');
+            const tamanio = 40;
+            
+            const pincel = {
+                color: "whitesmoke",
+                pintando: false
+            }
+            
+            container.style.gridTemplateColumns = `repeat(${tamanio}, 1fr)`;
+            
+        
+            for (let i = 0; i < tamanio * tamanio; i++) {
+                const div = document.createElement('div');
+                div.className = 'pixel';
+                div.id = i + 1;
+                container.appendChild(div);
+            }
+            
+        
+            const pixeles = document.querySelectorAll('.pixel');
+            
+        
+            function pintarPixel(pixel) {
+                if (pincel.pintando) {
+                    pixel.style.backgroundColor = pincel.color;
+                }
+            }
+            
+        
+            pixeles.forEach(pixel => {
+                pixel.addEventListener('mousedown', function(e) {
+                    pincel.pintando = true;
+                    pintarPixel(this);
+                });
+                
+                pixel.addEventListener('mouseover', function() {
+                    pintarPixel(this);
+                });
+            });
+            
+        
+            document.addEventListener('mouseup', function() {
+                pincel.pintando = false;
+            });
+            
+        
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    pincel.color = btn.dataset.color;
+                });
+            });
+            
+        
+            const borrador = document.getElementById('borrador');
+            borrador.addEventListener('click', () => {
+                pincel.color = "whitesmoke";
+            });
+            
+        
+            const limpiarTodo = document.getElementById('limpiarTodo');
+            limpiarTodo.addEventListener('click', () => {
+                pixeles.forEach(pixel => {
+                    pixel.style.backgroundColor = "whitesmoke";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

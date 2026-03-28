@@ -174,7 +174,7 @@ body {
     padding: 15px;
     color: #d4d4d4;
     line-height: 1.6;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 }
 
 .dropdown-content .ejercicio-contenido p {
@@ -315,7 +315,7 @@ body {
     overflow-x: auto;      /* Cambiado de hidden a auto */
     padding: 10px;
     font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.5;
     background: #0a0a0f;
     min-height: 0;
@@ -630,6 +630,7 @@ html {
             margin-bottom: 12px;
             line-height: 1.6;
             font-size: 1rem;
+            color: whitesmoke;
         }
         
         .ejercicio-contenido .codigo-bloque {

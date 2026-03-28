@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Módulo 3 - Funciones</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,7 +16,180 @@
             <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
             
             <div class="dropdown-content" id="dropdown-teoria">
+                <!-- Ejercicio 1 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se declara una función en JavaScript? ¿Cuál es la diferencia con una arrow function? ¿Qué pasa si llamás a una función antes de declararla con function? ¿Y si es una arrow function?</strong></p>
+                        <p><strong>Declaración:</strong> <code>function nombre(parametros) { /* código */ }</code></p>
+                        <p><strong>Arrow function:</strong> <code>const nombre = (parametros) => { /* código */ }</code> o versión simplificada si es una sola línea.</p>
+                        <p><strong>Diferencia principal:</strong> Las arrow functions no tienen su propio <code>this</code>, no tienen <code>arguments</code> y no pueden usarse como constructores.</p>
+                        <p><strong>Llamada antes de declarar:</strong> Con <code>function</code> funciona por <strong>hoisting</strong> (se eleva la declaración). Con arrow function NO funciona, da error porque se asigna a una variable que aún no existe.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">saludar(); // ✅ funciona</div>
+                                <div class="consola-line success">function saludar() { console.log("Hola"); }</div>
+                                <div class="consola-line error">saludar2(); // ❌ error</div>
+                                <div class="consola-line error">const saludar2 = () => console.log("Hola");</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Ejercicio 2 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencia hay entre una función que retorna un valor y una que no?</strong></p>
+                        <p>Una función que retorna un valor devuelve un resultado que puede ser usado fuera de ella. Una función que no retorna, implícitamente devuelve <code>undefined</code> y generalmente se usa para ejecutar acciones (modificar algo, mostrar en consola, etc.).</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function sumar(a, b) { return a + b; } // retorna valor</div>
+                                <div class="consola-line success">function saludar() { console.log("Hola"); } // no retorna (undefined)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 3 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el scope? ¿Qué diferencia hay entre una variable global y una local?</strong></p>
+                        <p><strong>Scope:</strong> Es el alcance o ámbito donde una variable es accesible.</p>
+                        <p><strong>Variable global:</strong> Se declara fuera de cualquier función o bloque y es accesible desde cualquier parte del código.</p>
+                        <p><strong>Variable local:</strong> Se declara dentro de una función o bloque y solo es accesible dentro de ese ámbito.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let global = "accesible desde cualquier lugar";</div>
+                                <div class="consola-line success">function ejemplo() {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;let local = "solo dentro de la función";</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line error">console.log(local); // ❌ error, no existe fuera</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 4 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué pasa si una función accede a una variable que no fue declarada dentro de ella?</strong></p>
+                        <p>JavaScript busca la variable en los scopes superiores (scope chain). Si no la encuentra en ningún lado, con <code>var</code> se crea automáticamente como global (modo no estricto), pero con <code>let</code> o <code>const</code> da error de referencia.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function ejemplo() {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;console.log(noDeclarada); // ❌ ReferenceError</div>
+                                <div class="consola-line success">}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 5 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un closure? ¿Podés explicarlo con un ejemplo simple?</strong></p>
+                        <p><strong>Closure:</strong> Es una función que "recuerda" el ámbito en el que fue creada, incluso después de que ese ámbito haya terminado de ejecutarse.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function crearContador() {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;let contador = 0;</div>
+                                <div class="consola-line success">&nbsp;&nbsp;return function() {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;&nbsp;&nbsp;contador++;</div>
+                                <div class="consola-line success">&nbsp;&nbsp;&nbsp;&nbsp;return contador;</div>
+                                <div class="consola-line success">&nbsp;&nbsp;};</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">const incrementar = crearContador();</div>
+                                <div class="consola-line success">console.log(incrementar()); // 1</div>
+                                <div class="consola-line success">console.log(incrementar()); // 2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 6 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué pasa si una función se llama a sí misma? ¿Cómo se llama eso?</strong></p>
+                        <p>Se llama <strong>recursión</strong>. La función se invoca a sí misma hasta que se cumple una condición de corte.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function factorial(n) {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;if (n === 0) return 1;</div>
+                                <div class="consola-line success">&nbsp;&nbsp;return n * factorial(n - 1); // se llama a sí misma</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">console.log(factorial(5)); // 120</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 7 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué pasa si una función tiene múltiples parámetros (4 por ejemplo) pero se llama con menos (3)?</strong></p>
+                        <p>No da error. Los parámetros faltantes toman el valor <code>undefined</code>. Se pueden asignar valores por defecto para evitarlo.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function ejemplo(a, b, c, d) {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;console.log(a, b, c, d);</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">ejemplo(1, 2, 3); // 1, 2, 3, undefined</div>
+                                <div class="consola-line success">function conDefault(a, b = 10) { // valor por defecto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 8 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 8</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencia hay entre declarar una función dentro de otra, o fuera?</strong></p>
+                        <p>Una función declarada dentro de otra solo es accesible dentro de esa función (privada). Una función declarada fuera es accesible globalmente. Se usa cuando la función interna es auxiliar y no debe ser usada fuera.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function externa() {</div>
+                                <div class="consola-line success">&nbsp;&nbsp;function interna() { console.log("solo dentro"); }</div>
+                                <div class="consola-line success">&nbsp;&nbsp;interna(); // ✅ funciona</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line error">interna(); // ❌ error, no existe fuera</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio 9 -->
+                <div class="ejercicio">
+                    <h3>Ejercicio 9</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Se puede guardar una función en una variable? ¿Para qué sirve eso?</strong></p>
+                        <p>Sí, en JavaScript pueden asignarse a variables, pasarse como argumentos y retornarse desde otras funciones.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">const saludar = function() { console.log("Hola"); };</div>
+                                <div class="consola-line success">const operacion = (a, b) => a + b;</div>
+                                <div class="consola-line success">function ejecutar(fn, valor) { return fn(valor); } // función como parámetro</div>
+                            </div>
+                        </div>
+                        <p><strong>Utilidad:</strong> Permite programación funcional, callbacks, funciones de orden superior, y más flexibilidad en el código.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="dropdown">
@@ -26,7 +199,7 @@
             <input type="checkbox" id="practica-toggle" class="dropdown-toggle">
             <div class="dropdown-content" id="dropdown-practica">
                 <div id="ejercicio-practica-container">
-                    <!-- Los ejercicios se cargan dinámicamente desde JSON -->
+                    
                 </div>
             </div>
         </div>

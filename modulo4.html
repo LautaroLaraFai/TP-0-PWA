@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4 - Arrays y Objetos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un array en JavaScript y cómo se declara?</strong></p>
+                        <p>Un array es una estructura de datos que permite almacenar una colección ordenada de elementos. Los elementos pueden ser de cualquier tipo (números, strings, objetos, incluso otros arrays) y se accede a ellos mediante un índice numérico que comienza en 0.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let frutas = ["manzana", "banana", "naranja"];</div>
+                                <div class="consola-line success">let numeros = [1, 2, 3, 4, 5];</div>
+                                <div class="consola-line success">let mixto = [42, "texto", true, { clave: "valor" }];</div>
+                                <div class="consola-line success">let vacio = []; // array vacío</div>
+                                <div class="consola-line info">// También se puede usar el constructor Array()</div>
+                                <div class="consola-line success">let numeros2 = new Array(5); // crea un array con 5 posiciones vacías</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo accedés al tercer elemento de un array?</strong></p>
+                        <p>Se accede mediante el índice numérico. Como los índices comienzan en 0, el tercer elemento está en la posición 2.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let colores = ["rojo", "azul", "verde", "amarillo"];</div>
+                                <div class="consola-line success">console.log(colores[2]); // "verde"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué métodos de array son los más comunes en JavaScript? Explicá para qué sirve cada uno y cómo podrías usarlos para recorrer, agregar o quitar elementos.</strong></p>
+                        <p><strong>Agregar elementos:</strong></p>
+                        <ul>
+                            <li><code>push()</code> - agrega uno o más elementos al final del array</li>
+                            <li><code>unshift()</code> - agrega uno o más elementos al inicio del array</li>
+                        </ul>
+                        <p><strong>Quitar elementos:</strong></p>
+                        <ul>
+                            <li><code>pop()</code> - elimina el último elemento y lo devuelve</li>
+                            <li><code>shift()</code> - elimina el primer elemento y lo devuelve</li>
+                            <li><code>splice()</code> - elimina, reemplaza o inserta elementos en cualquier posición</li>
+                        </ul>
+                        <p><strong>Recorrer / transformar:</strong></p>
+                        <ul>
+                            <li><code>forEach()</code> - ejecuta una función por cada elemento</li>
+                            <li><code>map()</code> - crea un nuevo array transformando cada elemento</li>
+                            <li><code>filter()</code> - crea un nuevo array con los elementos que cumplen una condición</li>
+                            <li><code>reduce()</code> - reduce el array a un solo valor (suma, promedio, etc.)</li>
+                        </ul>
+                        <p><strong>Buscar:</strong></p>
+                        <ul>
+                            <li><code>find()</code> - devuelve el primer elemento que cumple una condición</li>
+                            <li><code>some()</code> - verifica si al menos un elemento cumple una condición</li>
+                            <li><code>every()</code> - verifica si todos los elementos cumplen una condición</li>
+                            <li><code>includes()</code> - verifica si un valor existe en el array</li>
+                        </ul>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplos</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3];</div>
+                                <div class="consola-line success">numeros.push(4);      // [1, 2, 3, 4]</div>
+                                <div class="consola-line success">numeros.pop();        // [1, 2, 3]</div>
+                                <div class="consola-line success">numeros.forEach(n => console.log(n)); // 1, 2, 3</div>
+                                <div class="consola-line success">let dobles = numeros.map(n => n * 2); // [2, 4, 6]</div>
+                                <div class="consola-line success">let pares = numeros.filter(n => n % 2 === 0); // [2]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué método usarías para eliminar el último elemento de un array? ¿Y el primero?</strong></p>
+                        <p><code>pop()</code> elimina el último elemento. <code>shift()</code> elimina el primer elemento.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let frutas = ["manzana", "banana", "naranja"];</div>
+                                <div class="consola-line success">frutas.pop();      // ["manzana", "banana"]</div>
+                                <div class="consola-line success">frutas.shift();    // ["banana"]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué pasa si accedés a una posición inexistente en un array?</strong></p>
+                        <p>Devuelve <code>undefined</code>. No genera error, simplemente la posición no tiene valor asignado.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let frutas = ["manzana", "banana"];</div>
+                                <div class="consola-line success">console.log(frutas[5]); // undefined</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo verificás si un valor está presente en un array o en un Set?</strong></p>
+                        <p>Para arrays se usa <code>includes()</code> o <code>indexOf()</code>. Para Sets se usa <code>has()</code>.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let numeros = [1, 2, 3, 4];</div>
+                                <div class="consola-line success">numeros.includes(3);    // true</div>
+                                <div class="consola-line success">numeros.includes(5);    // false</div>
+                                <div class="consola-line success">let setNumeros = new Set([1, 2, 3, 4]);</div>
+                                <div class="consola-line success">setNumeros.has(3);       // true</div>
+                                <div class="consola-line success">setNumeros.has(5);       // false</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un Set? ¿En qué casos conviene usarlo en lugar de un array?</strong></p>
+                        <p>Un Set es una colección de valores únicos. No permite duplicados y no tiene índices numéricos. Conviene usarlo cuando:</p>
+                        <ul>
+                            <li>Se necesita garantizar que no haya valores repetidos</li>
+                            <li>Se realizan muchas búsquedas de existencia (método <code>has()</code> es más rápido que <code>includes()</code>)</li>
+                            <li>No importa el orden ni la posición de los elementos</li>
+                        </ul>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let idsUnicos = new Set([1, 2, 2, 3, 3, 3]);</div>
+                                <div class="consola-line success">console.log(idsUnicos); // Set(3) {1, 2, 3}</div>
+                                <div class="consola-line success">// Eliminar duplicados de un array</div>
+                                <div class="consola-line success">let conDuplicados = [1, 2, 2, 3, 3];</div>
+                                <div class="consola-line success">let sinDuplicados = [...new Set(conDuplicados)]; // [1, 2, 3]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 8</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un Map y qué lo diferencia de un objeto?</strong></p>
+                        <p>Un Map es una colección de pares clave-valor donde las claves pueden ser de cualquier tipo (objetos, funciones, números, etc.), a diferencia de los objetos comunes que solo permiten claves de tipo string o Symbol.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Diferencias principales</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let mapa = new Map();</div>
+                                <div class="consola-line success">mapa.set("nombre", "Juan");</div>
+                                <div class="consola-line success">mapa.set(123, "valor numérico como clave");</div>
+                                <div class="consola-line success">mapa.set({ id: 1 }, "objeto como clave");</div>
+                                <div class="consola-line info">// Map mantiene el orden de inserción</div>
+                                <div class="consola-line info">// Map tiene métodos .size, .has(), .delete(), .clear()</div>
+                                <div class="consola-line info">// Objeto común: solo strings o Symbols como claves</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 9</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo recorrerías un array con un bucle? Mostrá al menos dos formas diferentes.</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Forma 1: for tradicional</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let frutas = ["manzana", "banana", "naranja"];</div>
+                                <div class="consola-line success">for (let i = 0; i < frutas.length; i++) {</div>
+                                <div class="consola-line success">    console.log(frutas[i]);</div>
+                                <div class="consola-line success">}</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Forma 2: forEach</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">frutas.forEach(function(fruta) {</div>
+                                <div class="consola-line success">    console.log(fruta);</div>
+                                <div class="consola-line success">});</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Forma 3: for...of</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">for (let fruta of frutas) {</div>
+                                <div class="consola-line success">    console.log(fruta);</div>
+                                <div class="consola-line success">}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 10</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un objeto en JavaScript y cómo se declara?</strong></p>
+                        <p>Un objeto es una colección de propiedades, donde cada propiedad tiene una clave (string) y un valor. Se puede declarar usando llaves <code>{}</code>.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = {</div>
+                                <div class="consola-line success">    nombre: "Juan",</div>
+                                <div class="consola-line success">    edad: 30,</div>
+                                <div class="consola-line success">    profesion: "programador",</div>
+                                <div class="consola-line success">    saludar: function() {</div>
+                                <div class="consola-line success">        console.log("Hola");</div>
+                                <div class="consola-line success">    }</div>
+                                <div class="consola-line success">};</div>
+                                <div class="consola-line success">let vacio = {}; // objeto vacío</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 11</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuál es la diferencia entre acceder a una propiedad con . y con []?</strong></p>
+                        <p>La notación con punto (<code>.</code>) se usa cuando el nombre de la propiedad es conocido y válido como identificador (sin espacios, no comienza con número). La notación con corchetes (<code>[]</code>) permite usar strings con espacios, variables o expresiones.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan", "apellido materno": "Perez" };</div>
+                                <div class="consola-line success">console.log(persona.nombre);              // "Juan"</div>
+                                <div class="consola-line success">console.log(persona["apellido materno"]); // "Perez"</div>
+                                <div class="consola-line success">let clave = "nombre";</div>
+                                <div class="consola-line success">console.log(persona[clave]);              // "Juan" (usando variable)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 12</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué sucede si intentás acceder a una propiedad que no existe en un objeto?</strong></p>
+                        <p>Devuelve <code>undefined</code>. No genera error.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan" };</div>
+                                <div class="consola-line success">console.log(persona.apellido); // undefined</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 13</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo agregás, modificás y eliminás propiedades en un objeto?</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan" };</div>
+                                <div class="consola-line success">// Agregar</div>
+                                <div class="consola-line success">persona.edad = 30;           // con punto</div>
+                                <div class="consola-line success">persona["profesion"] = "programador"; // con corchetes</div>
+                                <div class="consola-line success">// Modificar</div>
+                                <div class="consola-line success">persona.nombre = "Carlos";</div>
+                                <div class="consola-line success">// Eliminar</div>
+                                <div class="consola-line success">delete persona.edad;</div>
+                                <div class="consola-line success">console.log(persona); // { nombre: "Carlos", profesion: "programador" }</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 14</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un objeto anidado? Mostrá un ejemplo.</strong></p>
+                        <p>Es un objeto que contiene otro objeto como valor de una de sus propiedades.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let estudiante = {</div>
+                                <div class="consola-line success">    nombre: "Maria",</div>
+                                <div class="consola-line success">    direccion: {</div>
+                                <div class="consola-line success">        calle: "Av. Siempre Viva",</div>
+                                <div class="consola-line success">        numero: 742,</div>
+                                <div class="consola-line success">        ciudad: "Springfield"</div>
+                                <div class="consola-line success">    },</div>
+                                <div class="consola-line success">    curso: {</div>
+                                <div class="consola-line success">        nombre: "JavaScript",</div>
+                                <div class="consola-line success">        nivel: "Avanzado"</div>
+                                <div class="consola-line success">    }</div>
+                                <div class="consola-line success">};</div>
+                                <div class="consola-line success">console.log(estudiante.direccion.ciudad); // "Springfield"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 15</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se recorren las propiedades de un objeto? ¿Para qué sirve for...in?</strong></p>
+                        <p>Se puede usar <code>for...in</code> para recorrer las propiedades enumerables de un objeto.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan", edad: 30, ciudad: "Buenos Aires" };</div>
+                                <div class="consola-line success">for (let clave in persona) {</div>
+                                <div class="consola-line success">    console.log(clave + ": " + persona[clave]);</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">// Resultado:</div>
+                                <div class="consola-line success">// nombre: Juan</div>
+                                <div class="consola-line success">// edad: 30</div>
+                                <div class="consola-line success">// ciudad: Buenos Aires</div>
+                            </div>
+                        </div>
+                        <p><code>for...in</code> sirve para iterar sobre las propiedades de un objeto, útil cuando no se conocen los nombres de las propiedades de antemano.</p>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 16</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué devuelven Object.keys(), Object.values() y Object.entries()?</strong></p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan", edad: 30, ciudad: "Buenos Aires" };</div>
+                                <div class="consola-line success">Object.keys(persona);   // ["nombre", "edad", "ciudad"]</div>
+                                <div class="consola-line success">Object.values(persona); // ["Juan", 30, "Buenos Aires"]</div>
+                                <div class="consola-line success">Object.entries(persona); // [["nombre","Juan"], ["edad",30], ["ciudad","Buenos Aires"]]</div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><code>Object.keys()</code> - devuelve un array con las claves (nombres de las propiedades)</li>
+                            <li><code>Object.values()</code> - devuelve un array con los valores</li>
+                            <li><code>Object.entries()</code> - devuelve un array de arrays, cada uno con [clave, valor]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 17</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué diferencia hay entre un array y un objeto en cuanto a estructura y uso?</strong></p>
+                        <ul>
+                            <li><strong>Array:</strong> Colección ordenada de elementos accesibles por índice numérico (0, 1, 2...). Se usa cuando el orden importa y se trabaja con listas de elementos del mismo tipo.</li>
+                            <li><strong>Objeto:</strong> Colección de propiedades con claves de tipo string. Se usa cuando se necesita describir una entidad con atributos nombrados.</li>
+                        </ul>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">// Array: lista de elementos</div>
+                                <div class="consola-line success">let colores = ["rojo", "azul", "verde"];</div>
+                                <div class="consola-line success">colores[0]; // "rojo" (por posición)</div>
+                                <div class="consola-line success">// Objeto: entidad con atributos</div>
+                                <div class="consola-line success">let persona = { nombre: "Juan", edad: 30 };</div>
+                                <div class="consola-line success">persona.nombre; // "Juan" (por clave)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 18</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la desestructuración de objetos y para qué sirve?</strong></p>
+                        <p>Es una sintaxis que permite extraer propiedades de un objeto y asignarlas a variables de forma más concisa.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan", edad: 30, ciudad: "Buenos Aires" };</div>
+                                <div class="consola-line success">// Sin desestructuración</div>
+                                <div class="consola-line success">let nombre = persona.nombre;</div>
+                                <div class="consola-line success">let edad = persona.edad;</div>
+                                <div class="consola-line success">// Con desestructuración</div>
+                                <div class="consola-line success">let { nombre, edad } = persona;</div>
+                                <div class="consola-line success">console.log(nombre); // "Juan"</div>
+                                <div class="consola-line success">console.log(edad);   // 30</div>
+                                <div class="consola-line success">// Con alias</div>
+                                <div class="consola-line success">let { nombre: nombrePersona, edad: edadPersona } = persona;</div>
+                                <div class="consola-line success">// Valor por defecto</div>
+                                <div class="consola-line success">let { telefono = "no disponible" } = persona;</div>
+                            </div>
+                        </div>
+                        <p>Sirve para escribir código más limpio y extraer múltiples propiedades en una sola línea.</p>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 19</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se usan los operadores spread (...) y rest (...) con objetos?</strong></p>
+                        <p><strong>Spread (...)</strong> permite expandir las propiedades de un objeto dentro de otro. Se usa para copiar o combinar objetos.</p>
+                        <p><strong>Rest (...)</strong> permite agrupar las propiedades restantes en un nuevo objeto.</p>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Spread (...)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let persona = { nombre: "Juan", edad: 30 };</div>
+                                <div class="consola-line success">let direccion = { ciudad: "Buenos Aires", pais: "Argentina" };</div>
+                                <div class="consola-line success">let completo = { ...persona, ...direccion };</div>
+                                <div class="consola-line success">// { nombre: "Juan", edad: 30, ciudad: "Buenos Aires", pais: "Argentina" }</div>
+                                <div class="consola-line success">let copia = { ...persona }; // copia superficial</div>
+                            </div>
+                        </div>
+                        <div class="consola" style="margin: 10px 0;">
+                            <div class="consola-header">Rest (...)</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">let { nombre, ...resto } = { nombre: "Juan", edad: 30, ciudad: "Buenos Aires" };</div>
+                                <div class="consola-line success">console.log(nombre); // "Juan"</div>
+                                <div class="consola-line success">console.log(resto);  // { edad: 30, ciudad: "Buenos Aires" }</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            history.pushState({}, "", "?modulo=4");
+        });
+    </script>
+</body>
+</html>
