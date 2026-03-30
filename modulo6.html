@@ -3,12 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Módulo 6 - Funciones Avanzadas y Callbacks</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="header-placeholder"></div>
     <div class="main-content">
+        <div class="dropdown">
+            <label for="teoria-toggle" class="dropdown-title">
+                <h2>Teoría</h2>
+            </label>
+            <input type="checkbox" id="teoria-toggle" class="dropdown-toggle">
+            
+            <div class="dropdown-content" id="dropdown-teoria">
+                <div class="ejercicio">
+                    <h3>Ejercicio 1</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es una función de orden superior (higher-order function)?</strong></p>
+                        <p>Es una función que puede tomar una o más funciones como argumentos (callbacks) o devolver una función como resultado. Ejemplos comunes son <code>map()</code>, <code>filter()</code>, <code>reduce()</code>.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function operar(a, b, callback) {</div>
+                                <div class="consola-line success">    return callback(a, b);</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">const suma = operar(5, 3, (x, y) => x + y); // 8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 2</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es un callback y para qué se usa?</strong></p>
+                        <p>Un callback es una función que se pasa como argumento a otra función y se ejecuta después de que esta última termine. Se usa principalmente para manejar operaciones asíncronas (eventos, setTimeout, peticiones a servidores) y para personalizar el comportamiento de funciones de orden superior.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">setTimeout(() => {</div>
+                                <div class="consola-line success">    console.log("Esto se ejecuta después de 1 segundo");</div>
+                                <div class="consola-line success">}, 1000);</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 3</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuál es la diferencia entre una función normal y una arrow function?</strong></p>
+                        <ul>
+                            <li><strong>Sintaxis:</strong> Las arrow functions son más concisas: <code>() => {}</code> vs <code>function() {}</code></li>
+                            <li><strong>this:</strong> Las arrow functions no tienen su propio <code>this</code>. Heredan el <code>this</code> del contexto donde fueron creadas (this léxico).</li>
+                            <li><strong>Constructor:</strong> Las arrow functions no pueden usarse con <code>new</code> (no son constructores).</li>
+                            <li><strong>arguments:</strong> Las arrow functions no tienen su propio objeto <code>arguments</code>.</li>
+                        </ul>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">// Función normal</div>
+                                <div class="consola-line success">function normal() { console.log(this); }</div>
+                                <div class="consola-line success">// Arrow function</div>
+                                <div class="consola-line success">const arrow = () => { console.log(this); }</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 4</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el contexto de ejecución (this) en JavaScript?</strong></p>
+                        <p><code>this</code> es una referencia al objeto que está ejecutando el código actual. Su valor depende de cómo se llama a la función:</p>
+                        <ul>
+                            <li>En el ámbito global: <code>this</code> es el objeto global (<code>window</code> en navegadores, <code>global</code> en Node.js).</li>
+                            <li>En un método de objeto: <code>this</code> es el objeto propietario del método.</li>
+                            <li>En una función normal: <code>this</code> es el objeto global (en modo estricto, es <code>undefined</code>).</li>
+                            <li>Con <code>call()</code>, <code>apply()</code>, <code>bind()</code>: <code>this</code> se puede establecer manualmente.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 5</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cómo se maneja el contexto de ejecución en arrow functions?</strong></p>
+                        <p>Las arrow functions <strong>no tienen su propio <code>this</code></strong>. En lugar de eso, toman el <code>this</code> del ámbito donde fueron definidas (this léxico). Esto las hace ideales para callbacks dentro de objetos o clases, donde se quiere mantener el <code>this</code> del contexto padre.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">const persona = {</div>
+                                <div class="consola-line success">    nombre: "Juan",</div>
+                                <div class="consola-line success">    saludar: function() {</div>
+                                <div class="consola-line success">        setTimeout(() => {</div>
+                                <div class="consola-line success">            console.log("Hola " + this.nombre); // ✅ this es persona</div>
+                                <div class="consola-line success">        }, 1000);</div>
+                                <div class="consola-line success">    }</div>
+                                <div class="consola-line success">};</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 6</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el closure en JavaScript?</strong></p>
+                        <p>Un <strong>closure</strong> es la combinación de una función y el <strong>entorno léxico</strong> (el ámbito de variables donde fue declarada). Esto permite que una función interna acceda a variables de la función externa incluso después de que la función externa haya terminado de ejecutarse.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function crearContador() {</div>
+                                <div class="consola-line success">    let contador = 0; // variable del entorno léxico</div>
+                                <div class="consola-line success">    return function() {</div>
+                                <div class="consola-line success">        contador++; // closure: recuerda contador</div>
+                                <div class="consola-line success">        return contador;</div>
+                                <div class="consola-line success">    };</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">const incrementar = crearContador();</div>
+                                <div class="consola-line success">console.log(incrementar()); // 1</div>
+                                <div class="consola-line success">console.log(incrementar()); // 2</div>
+                            </div>
+                        </div>
+                        <p><strong>Entorno léxico</strong>: Es el ámbito de variables que rodea a una función en el momento de su definición. Incluye las variables locales de la función externa y las variables globales.</p>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 7</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Cuáles son las ventajas de usar callbacks?</strong></p>
+                        <ul>
+                            <li><strong>Asincronía:</strong> Permiten ejecutar código después de que una operación asíncrona (como un setTimeout o una petición HTTP) termine, sin bloquear el hilo principal.</li>
+                            <li><strong>Reutilización:</strong> Se puede pasar la misma función callback a diferentes funciones para personalizar su comportamiento.</li>
+                            <li><strong>Modularidad:</strong> Separan la lógica principal de la lógica personalizada, haciendo el código más limpio.</li>
+                            <li><strong>Eventos:</strong> Son la base del manejo de eventos (clics, teclado, etc.) en el navegador.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 8</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es el callback hell y cómo se puede evitar?</strong></p>
+                        <p>El <strong>callback hell</strong> (también llamado "pirámide de la perdición") es un problema de legibilidad que ocurre cuando múltiples callbacks se anidan uno dentro de otro, creando una estructura difícil de leer y mantener.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo de callback hell</div>
+                            <div class="consola-output">
+                                <div class="consola-line error">setTimeout(() => {</div>
+                                <div class="consola-line error">    setTimeout(() => {</div>
+                                <div class="consola-line error">        setTimeout(() => {</div>
+                                <div class="consola-line error">            console.log("demasiado anidado");</div>
+                                <div class="consola-line error">        }, 1000);</div>
+                                <div class="consola-line error">    }, 1000);</div>
+                                <div class="consola-line error">}, 1000);</div>
+                            </div>
+                        </div>
+                        <p><strong>Cómo evitarlo:</strong></p>
+                        <ul>
+                            <li>Usar <strong>Promesas</strong> (<code>.then()</code> encadenados)</li>
+                            <li>Usar <strong>async/await</strong> (sintaxis más limpia)</li>
+                            <li>Modularizar: extraer callbacks en funciones separadas con nombres descriptivos</li>
+                            <li>Usar librerías como <code>async.js</code> para manejar flujos complejos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 9</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la composición de funciones?</strong></p>
+                        <p>La <strong>composición de funciones</strong> es el proceso de combinar dos o más funciones para crear una nueva función, donde la salida de una función se convierte en la entrada de la siguiente. Es un concepto central de la programación funcional.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">const sumarUno = x => x + 1;</div>
+                                <div class="consola-line success">const duplicar = x => x * 2;</div>
+                                <div class="consola-line success">const sumarYDuplicar = x => duplicar(sumarUno(x));</div>
+                                <div class="consola-line success">console.log(sumarYDuplicar(5)); // (5+1)*2 = 12</div>
+                                <div class="consola-line success">// Con compose</div>
+                                <div class="consola-line success">const compose = (f, g) => x => f(g(x));</div>
+                                <div class="consola-line success">const procesar = compose(duplicar, sumarUno);</div>
+                                <div class="consola-line success">console.log(procesar(5)); // 12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ejercicio">
+                    <h3>Ejercicio 10</h3>
+                    <div class="ejercicio-contenido">
+                        <p><strong>¿Qué es la currying y para qué se usa?</strong></p>
+                        <p>El <strong>currying</strong> es una técnica de la programación funcional que transforma una función que recibe múltiples parámetros en una secuencia de funciones, cada una recibe un solo parámetro y devuelve otra función hasta que todos los parámetros han sido proporcionados.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">// Función normal</div>
+                                <div class="consola-line success">function sumar(a, b, c) { return a + b + c; }</div>
+                                <div class="consola-line success">// Versión currificada</div>
+                                <div class="consola-line success">function sumarCurry(a) {</div>
+                                <div class="consola-line success">    return function(b) {</div>
+                                <div class="consola-line success">        return function(c) {</div>
+                                <div class="consola-line success">            return a + b + c;</div>
+                                <div class="consola-line success">        };</div>
+                                <div class="consola-line success">    };</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">const sumar5 = sumarCurry(5);</div>
+                                <div class="consola-line success">const sumar5y3 = sumar5(3);</div>
+                                <div class="consola-line success">console.log(sumar5y3(2)); // 10</div>
+                                <div class="consola-line success">// En una línea con arrow functions</div>
+                                <div class="consola-line success">const suma = a => b => c => a + b + c;</div>
+                            </div>
+                        </div>
+                        <p><strong>Para qué se usa:</strong> Permite crear funciones parcialmente aplicadas, facilita la composición de funciones, mejora la reutilización y hace el código más declarativo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="dropdown">
             <label for="practica-toggle" class="dropdown-title">
                 <h2>Práctica</h2>
