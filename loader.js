@@ -14,7 +14,7 @@ function cargarComponente(id, archivo) {
 }
 
 
-function ejecutar(nroModulo, nroEjercicio) {
+function ejecutar(nroModulo, nroEjercicio, preserveLog = false) {
     let idTextarea = `codigo-mod${nroModulo}-ej${nroEjercicio}`;
     let idConsola = `consola-mod${nroModulo}-ej${nroEjercicio}`;
     
@@ -24,13 +24,17 @@ function ejecutar(nroModulo, nroEjercicio) {
     if (!consolaElem) return;
     
     let outputElem = consolaElem.querySelector(".consola-output");
-    
-    if (codigo.trim() === "") {
-        outputElem.innerHTML = '<div class="consola-line error">> No hay código para ejecutar</div>';
-        return;
+    if (preserveLog){
+        outputElem.innerHTML += '<div class="consola-line info"> fdsnofdjsknfjkdfbwksfbuidwbciuwbfuiwsbfduiw</div>';
+    }else{
+        outputElem.innerHTML = '';
+        outputElem.innerHTML = '<div class="consola-line info"> fdsnofdjsknfjkdfbwksfbuidwbciuwbfuiwsbfduiw</div>';
     }
     
-    outputElem.innerHTML = "";
+    if (codigo.trim() === "") {
+        outputElem.innerHTML += '<div class="consola-line error">> No hay código para ejecutar</div>';
+        return;
+    }
     
 
     let originalLog = console.log;
@@ -81,7 +85,7 @@ function reiniciar(nroModulo, nroEjercicio) {
         });
 }
 
-function generarEjercicios(nroModulo) {
+function generarEjercicios(nroModulo, preserveLog = false) {
     fetch('ejercicios.json')
         .then(respuesta => respuesta.json())
         .then(datos => {
@@ -102,9 +106,9 @@ function generarEjercicios(nroModulo) {
                         <h3>Ejercicio ${ej.numero}: ${ej.titulo}</h3>
                         <div class="instruccion">${ej.instruccion}</div>
                         <textarea id="codigo-mod${nroModulo}-ej${ej.numero}" rows="8">${ej.codigoInicial}</textarea>
-                        <button onclick="ejecutar(${nroModulo}, ${ej.numero})">Ejecutar</button>
+                        <button onclick="ejecutar(${nroModulo}, ${ej.numero}, ${preserveLog})">Ejecutar</button>
                         <button onclick="reiniciar(${nroModulo}, ${ej.numero})">Reiniciar</button>
-                        <div id="consola-mod${nroModulo}-ej${ej.numero}" class="consola">
+                        <div id="consola-mod${nroModulo}-ej${ej.numero}" class="consola ">
                             <div class="consola-header">Consola</div>
                             <div class="consola-output"></div>
                         </div>
@@ -122,5 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let params = new URLSearchParams(window.location.search);
     let modulo = parseInt(params.get("modulo"));
-    generarEjercicios(modulo);
+    let preserveLog = params.get("preserveLog") || "false";
+    preserveLog = (preserveLog.toLowerCase() === "true");
+    generarEjercicios(modulo, preserveLog);
 });

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consola JS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #1e1e2f;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* MAIN */
+        .main-content {
+            flex: 1;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* TÍTULO de sección */
+        .seccion-titulo {
+            color: #79c0ff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #007acc;
+            display: inline-block;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        /* LAYOUT principal: editor a la izquierda, consola a la derecha */
+        .editor-consola-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: calc(100vh - 120px);
+            max-height: 100%;  
+        }
+
+        @media (max-width: 768px) {
+            .editor-consola-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* PANEL de editor */
+        .panel {
+            min-height: 0;
+            background: #42425a;
+            border: 1px solid #3d3d4a;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .panel:hover {
+            border-color: #007acc;
+        }
+
+        .panel-header {
+            background: #2d2d3a;
+            padding: 10px 16px;
+            font-size: 12px;
+            font-family: monospace;
+            color: #a0a0b0;
+            border-bottom: 1px solid #3d3d4a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .panel-header .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-blue  { background: #007acc; }
+        .dot-green { background: #89ca78; }
+        .dot-orange{ background: #ffb86c; }
+
+        /* TEXTAREA */
+        #codigo-textarea {
+            flex: 1;
+            width: 100%;
+            min-height: 380px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 16px;
+            border: none;
+            resize: none;
+            outline: none;
+        }
+
+        #codigo-textarea:focus {
+            box-shadow: inset 0 0 0 2px rgba(0, 122, 204, 0.3);
+        }
+
+        /* BOTONES */
+        .botones-bar {
+            display: flex;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #1e1e2a;
+            border-top: 1px solid #3d3d4a;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            border: none;
+            padding: 9px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-ejecutar {
+            background: #007acc;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-ejecutar:hover {
+            background: #005999;
+            transform: translateY(-1px);
+        }
+
+        .btn-ejecutar:active {
+            transform: translateY(0);
+        }
+
+        .btn-reiniciar {
+            background: #3d3d4a;
+            color: #a0a0b0;
+        }
+
+        .btn-reiniciar:hover {
+            background: #4a4a5a;
+            color: #d4d4d4;
+        }
+
+        .btn-limpiar {
+            background: #3d2d2d;
+            color: #f48771;
+        }
+
+        .btn-limpiar:hover {
+            background: #5a3a3a;
+        }
+
+        /* CONSOLA OUTPUT */
+        .consola-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .consola-output {
+            min-height: 0;
+            flex: 1;
+            overflow-y: scroll;
+            padding: 12px 14px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #0a0a0f;
+            min-height: 0;
+        }
+
+        .consola-output::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .consola-output::-webkit-scrollbar-track {
+            background: #1e1e2a;
+            border-radius: 4px;
+        }
+
+        .consola-output::-webkit-scrollbar-thumb {
+            background: #4a4a5a;
+            border-radius: 4px;
+        }
+
+        .consola-output::-webkit-scrollbar-thumb:hover {
+            background: #6a6a7a;
+        }
+
+        .consola-line {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 1px 0;
+        }
+
+        .consola-line.success { color: #89ca78; }
+        .consola-line.error   { color: #f48771; }
+        .consola-line.info    { color: #79c0ff; }
+        .consola-line.warn    { color: #ffb86c; }
+
+        .consola-separador {
+            border: none;
+            border-top: 2px solid #007acc;
+            margin: 10px 0;
+            box-shadow: 0 0 6px #007acc;
+        }
+
+        /* Contador de líneas */
+        .consola-contador {
+            margin-left: auto;
+            font-size: 11px;
+            color: #5a5a6e;
+        }
+
+
+        /* Estado de ejecución */
+        .estado-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .estado-ok    { background: #2d4a2d; color: #89ca78; }
+        .estado-error { background: #4a2d2d; color: #f48771; }
+        .estado-idle  { background: #2d2d3a; color: #5a5a6e; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div id="header-placeholder"> </div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <div class="editor-consola-layout">
+
+            <!-- PANEL IZQUIERDO: editor -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="dot dot-blue"></span>
+                    editor
+                </div>
+                <textarea id="codigo-textarea" spellcheck="false" placeholder="Escribí tu código JavaScript acá...
+console.log('Hola mundo!');"></textarea>
+                <div class="botones-bar">
+                    <button class="btn btn-ejecutar" onclick="ejecutar()">▶ Ejecutar</button>
+                    <button class="btn btn-reiniciar" onclick="reiniciar()">↺ Reiniciar</button>
+                    <button class="btn btn-limpiar" onclick="limpiarConsola()">✕ Limpiar</button>
+                </div>
+            </div>
+
+            <!-- PANEL DERECHO: consola -->
+            <div class="panel consola-panel">
+                <div class="panel-header">
+                    <span class="dot dot-green"></span>
+                    consola
+                    <span id="estado-ejecucion" class="estado-badge estado-idle">● inactivo</span>
+                    <span id="consola-contador" class="consola-contador">0 líneas</span>
+                </div>
+                <div class="consola-output" id="consola-output">
+                    <div class="consola-line info">Listo para ejecutar</div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        const textarea   = document.getElementById('codigo-textarea');
+        const output     = document.getElementById('consola-output');
+        const contador   = document.getElementById('consola-contador');
+        const estadoBadge = document.getElementById('estado-ejecucion');
+        let lineCount = 0;
+
+        function actualizarContador() {
+            lineCount = output.querySelectorAll('.consola-line').length;
+            contador.textContent = lineCount + ' línea' + (lineCount !== 1 ? 's' : '');
+        }
+
+        function setEstado(tipo) {
+            estadoBadge.className = 'estado-badge';
+            if (tipo === 'ok') {
+                estadoBadge.classList.add('estado-ok');
+                estadoBadge.textContent = '● ejecutado';
+            } else if (tipo === 'error') {
+                estadoBadge.classList.add('estado-error');
+                estadoBadge.textContent = '● error';
+            } else {
+                estadoBadge.classList.add('estado-idle');
+                estadoBadge.textContent = '● inactivo';
+            }
+        }
+
+        function agregarLinea(texto, tipo = 'success') {
+            const div = document.createElement('div');
+            div.className = 'consola-line ' + tipo;
+            div.textContent = '> ' + texto;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+            actualizarContador();
+        }
+
+        function agregarSeparador() {
+            const hr = document.createElement('hr');
+            hr.className = 'consola-separador';
+            output.appendChild(hr);
+        }
+
+        function limpiarConsola() {
+            output.innerHTML = '<div class="consola-line info"> Consola limpiada</div>';
+            actualizarContador();
+            setEstado('idle');
+        }
+
+        function reiniciar() {
+            textarea.value = '';
+            limpiarConsola();
+            output.innerHTML = '<div class="consola-line info"> Código reiniciado</div>';
+            actualizarContador();
+            setEstado('idle');
+            textarea.focus();
+        }
+
+        function ejecutar() {
+            const codigo = textarea.value;
+
+            agregarSeparador();
+
+            if (codigo.trim() === '') {
+                agregarLinea('No hay código para ejecutar', 'error');
+                setEstado('error');
+                return;
+            }
+
+            const originalLog   = console.log;
+            const originalError = console.error;
+            const originalWarn  = console.warn;
+            const originalInfo  = console.info;
+
+            console.log = function(...args) {
+                agregarLinea(args.join(' '), 'success');
+                originalLog.apply(console, args);
+            };
+            console.error = function(...args) {
+                agregarLinea(args.join(' '), 'error');
+                originalError.apply(console, args);
+            };
+            console.warn = function(...args) {
+                agregarLinea(args.join(' '), 'warn');
+                originalWarn.apply(console, args);
+            };
+            console.info = function(...args) {
+                agregarLinea(args.join(' '), 'info');
+                originalInfo.apply(console, args);
+            };
+
+            let huboError = false;
+            try {
+                new Function(codigo)();
+                setEstado('ok');
+            } catch (err) {
+                agregarLinea('Error: ' + err.message, 'error');
+                setEstado('error');
+                huboError = true;
+            } finally {
+                console.log   = originalLog;
+                console.error = originalError;
+                console.warn  = originalWarn;
+                console.info  = originalInfo;
+            }
+        }
+
+        // Ctrl+Enter para ejecutar
+        textarea.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                ejecutar();
+            }
+            // Tab para indentar
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end   = this.selectionEnd;
+                this.value  = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+            
+        });
+
+        actualizarContador();
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarComponente('header-placeholder', 'header.html');
+            cargarComponente('footer-placeholder', 'footer.html');
+        })
+        function cargarComponente(id, archivo) {
+            fetch(archivo)
+                .then(respuesta => respuesta.text())
+                .then(datos => {
+                    let elemento = document.getElementById(id);
+                    if (elemento) elemento.innerHTML = datos;
+                })
+                .catch(error => console.log('Error al cargar ' + archivo + ': ' + error));
+        }
+    </script>
+    
+</body>
+</html>
