@@ -1,20 +1,61 @@
+// ============================================
+// FUNCIONES GLOBALES
+// ============================================
+
+function cargarComponente(id, archivo) {
+    fetch(archivo)
+        .then(res => res.text())
+        .then(data => {
+            let elem = document.getElementById(id);
+            if (elem) elem.innerHTML = data;
+        })
+        .catch(err => console.log("Error cargando", archivo, err));
+}
+
 function cerrarMenu() {
     let checkbox = document.getElementById('menuCheckbox');
     if (checkbox) checkbox.checked = false;
 }
 
-function cargarComponente(id, archivo) {
-    fetch(archivo)
-        .then(respuesta => respuesta.text())
+function generarEjercicios(nroModulo) {
+    fetch('ejercicios.json')
+        .then(res => res.json())
         .then(datos => {
-            let elemento = document.getElementById(id);
-            if (elemento) elemento.innerHTML = datos;
+            let modulo = datos.find(m => m.modulo === nroModulo);
+            if (!modulo) {
+                console.log("Módulo no encontrado");
+                return;
+            }
+            
+            let container = document.getElementById("ejercicio-practica-container");
+            if (!container) {
+                console.log("Contenedor no encontrado");
+                return;
+            }
+            
+            container.innerHTML = "";
+            
+            modulo.ejercicios.forEach(ej => {
+                container.innerHTML += `
+                    <div class="ejercicio">
+                        <h3>Ejercicio ${ej.numero}: ${ej.titulo}</h3>
+                        <div class="instruccion">${ej.instruccion}</div>
+                        <textarea id="codigo-mod${nroModulo}-ej${ej.numero}" rows="8">${ej.codigoInicial}</textarea>
+                        <button onclick="ejecutar(${nroModulo}, ${ej.numero})">Ejecutar</button>
+                        <button onclick="reiniciar(${nroModulo}, ${ej.numero})">Reiniciar</button>
+                        <div id="consola-mod${nroModulo}-ej${ej.numero}" class="consola">
+                            <div class="consola-header">Consola</div>
+                            <div class="consola-output"></div>
+                        </div>
+                        <div class="pregunta">${ej.pregunta}</div>
+                    </div>
+                `;
+            });
         })
-        .catch(error => console.log('Error al cargar ' + archivo + ': ' + error));
+        .catch(err => console.log("Error cargando ejercicios:", err));
 }
 
-
-function ejecutar(nroModulo, nroEjercicio, preserveLog = false) {
+function ejecutar(nroModulo, nroEjercicio) {
     let idTextarea = `codigo-mod${nroModulo}-ej${nroEjercicio}`;
     let idConsola = `consola-mod${nroModulo}-ej${nroEjercicio}`;
     
@@ -24,39 +65,36 @@ function ejecutar(nroModulo, nroEjercicio, preserveLog = false) {
     if (!consolaElem) return;
     
     let outputElem = consolaElem.querySelector(".consola-output");
-    if (preserveLog){
-        outputElem.innerHTML += '<div class="consola-line info"> fdsnofdjsknfjkdfbwksfbuidwbciuwbfuiwsbfduiw</div>';
-    }else{
-        outputElem.innerHTML = '';
-        outputElem.innerHTML = '<div class="consola-line info"> fdsnofdjsknfjkdfbwksfbuidwbciuwbfuiwsbfduiw</div>';
-    }
     
     if (codigo.trim() === "") {
-        outputElem.innerHTML += '<div class="consola-line error">> No hay código para ejecutar</div>';
+        outputElem.innerHTML = '<div class="consola-line error">> No hay código para ejecutar</div>';
         return;
     }
     
-
+    outputElem.innerHTML = "";
+    
     let originalLog = console.log;
     let originalError = console.error;
     
-
     console.log = function(...args) {
-        outputElem.innerHTML += `<div class="consola-line success">> ${args.join(" ")}</div>`;
+        let mensaje = args.join(" ");
+        outputElem.innerHTML += `<div class="consola-line success">> ${mensaje}</div>`;
         outputElem.scrollTop = outputElem.scrollHeight;
     };
     
     console.error = function(...args) {
-        outputElem.innerHTML += `<div class="consola-line error">> ${args.join(" ")}</div>`;
+        let mensaje = args.join(" ");
+        outputElem.innerHTML += `<div class="consola-line error">> ${mensaje}</div>`;
         outputElem.scrollTop = outputElem.scrollHeight;
     };
     
     try {
-        new Function(codigo)();
+        let funcion = new Function(codigo);
+        funcion();
+        outputElem.innerHTML += `<div class="consola-line info">> Ejecución completada</div>`;
     } catch(error) {
         outputElem.innerHTML += `<div class="consola-line error">> Error: ${error.message}</div>`;
     } finally {
-    
         console.log = originalLog;
         console.error = originalError;
     }
@@ -64,7 +102,7 @@ function ejecutar(nroModulo, nroEjercicio, preserveLog = false) {
 
 function reiniciar(nroModulo, nroEjercicio) {
     fetch('ejercicios.json')
-        .then(respuesta => respuesta.json())
+        .then(res => res.json())
         .then(datos => {
             let modulo = datos.find(m => m.modulo === nroModulo);
             if (!modulo) return;
@@ -82,51 +120,20 @@ function reiniciar(nroModulo, nroEjercicio) {
                 let outputElem = consolaElem.querySelector(".consola-output");
                 outputElem.innerHTML = '<div class="consola-line info">> Código restaurado</div>';
             }
-        });
+        })
+        .catch(err => console.log("Error al reiniciar:", err));
 }
 
-function generarEjercicios(nroModulo, preserveLog = false) {
-    fetch('ejercicios.json')
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-            let modulo = datos.find(m => m.modulo === nroModulo);
-            if (!modulo) {
-                console.log("Módulo no encontrado");
-                return;
-            }
-            
-            let container = document.getElementById("ejercicio-practica-container");
-            if (!container) return;
-            
-            container.innerHTML = "";
-            
-            modulo.ejercicios.forEach(ej => {
-                container.innerHTML += `
-                    <div class="ejercicio">
-                        <h3>Ejercicio ${ej.numero}: ${ej.titulo}</h3>
-                        <div class="instruccion">${ej.instruccion}</div>
-                        <textarea id="codigo-mod${nroModulo}-ej${ej.numero}" rows="8">${ej.codigoInicial}</textarea>
-                        <button onclick="ejecutar(${nroModulo}, ${ej.numero}, ${preserveLog})">Ejecutar</button>
-                        <button onclick="reiniciar(${nroModulo}, ${ej.numero})">Reiniciar</button>
-                        <div id="consola-mod${nroModulo}-ej${ej.numero}" class="consola ">
-                            <div class="consola-header">Consola</div>
-                            <div class="consola-output"></div>
-                        </div>
-                        <div class="pregunta">${ej.pregunta}</div>
-                    </div>
-                `;
-            });
-        })
-        .catch(error => console.log("Error al cargar ejercicios: " + error));
-}
+// ============================================
+// INICIALIZACIÓN
+// ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
     cargarComponente('header-placeholder', 'header.html');
     cargarComponente('footer-placeholder', 'footer.html');
     
     let params = new URLSearchParams(window.location.search);
-    let modulo = parseInt(params.get("modulo"));
-    let preserveLog = params.get("preserveLog") || "false";
-    preserveLog = (preserveLog.toLowerCase() === "true");
-    generarEjercicios(modulo, preserveLog);
+    let modulo = parseInt(params.get("modulo")) || 1;
+    
+    generarEjercicios(modulo);
 });

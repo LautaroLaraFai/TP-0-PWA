@@ -116,9 +116,120 @@
             {
                 "numero": 4,
                 "titulo": "Batalla por turnos con estrategia real",
-                "instruccion": "Creá una función calcularDanio(ataque, defensa, critico) que retorne el daño calculado. Luego implementá una batalla por turnos entre el jugador y la computadora usando promp",
-                "codigoInicial": "// Esta función ya la tenés del ejercicio 1\nfunction calcularDanio(ataque, defensa, critico) {\n    let danio = ataque - defensa;\n    if (critico) danio = danio * 2;\n    return danio < 0 ? 0 : danio;\n}\n\n// Función para generar valores aleatorios\nfunction valorAleatorio(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\n// Implementá la batalla acá\nlet vidaJugador = 100;\nlet vidaEnemigo = 100;\n\nfor (let turno = 1; turno <= 5 && vidaJugador > 0 && vidaEnemigo > 0; turno++) {\n    console.log(`\\n=== Turno ${turno} ===`);\n    console.log(`Tu vida: ${vidaJugador} | Enemigo: ${vidaEnemigo}`);\n    \n    // Completá el código\n}",
+                "instruccion": "Creá una función calcularDanio(ataque, defensa, critico) que retorne el daño calculado. Luego implementá una batalla por turnos entre el jugador y la computadora usando prompt.",
+                "codigoInicial": "function calcularDanio(ataque, defensa, critico) {\n    let danio = ataque - defensa;\n    if (critico) danio = danio * 2;\n    return danio < 0 ? 0 : danio;\n}\n\nfunction valorAleatorio(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\nlet vidaJugador = 100;\nlet vidaEnemigo = 100;\n\nfor (let turno = 1; turno <= 5 && vidaJugador > 0 && vidaEnemigo > 0; turno++) {\n    console.log(`\\n=== Turno ${turno} ===`);\n    console.log(`Tu vida: ${vidaJugador} | Enemigo: ${vidaEnemigo}`);\n    // Completá el código\n}",
                 "pregunta": "¿Cómo harías para que el enemigo tenga diferentes estrategias (más agresivo o más defensivo) según su vida?"
+            }
+        ]
+    },
+    {
+        "modulo": 4,
+        "titulo": "Arrays y Objetos",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Extraer mayúsculas",
+                "instruccion": "Escribí una función que reciba un string y devuelva otro string con solo las letras mayúsculas. Resolver con for y con funciones nativas.",
+                "codigoInicial": "function extraerMayusculasFor(texto) {\n    // Completá con for\n}\n\nfunction extraerMayusculasNativo(texto) {\n    // Completá con filter/match\n}\n\nconsole.log(extraerMayusculasFor(\"Hola Mundo Cruel\"));\nconsole.log(extraerMayusculasNativo(\"Hola Mundo Cruel\"));",
+                "pregunta": "¿Qué pasa si el string tiene números o símbolos? ¿Deberían incluirse?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Duplicar letras",
+                "instruccion": "Escribí una función que reciba un string y duplique cada letra. Bonus: que solo duplique letras, no números ni símbolos.",
+                "codigoInicial": "function duplicarLetras(texto) {\n    // Completá el código\n}\n\nconsole.log(duplicarLetras(\"Hola123!\"));\n// Resultado esperado: \"HHoollaa123!\"",
+                "pregunta": "¿Cómo harías para que solo duplique letras y no números ni símbolos?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Palabra más frecuente",
+                "instruccion": "Dada una frase, devolvé la palabra que más veces aparece. Ignorar mayúsculas/minúsculas y signos. Empate: devolver cualquiera.",
+                "codigoInicial": "function palabraMasFrecuente(frase) {\n    // Completá el código\n}\n\nconsole.log(palabraMasFrecuente(\"Hola hola mundo!\")); // \"hola\"\nconsole.log(palabraMasFrecuente(\"Hola, mundo cruel, mundo!\")); // \"mundo\"",
+                "pregunta": "¿Qué pasa si hay un empate? ¿Cómo decidís cuál devolver?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Reemplazo circular de letras",
+                "instruccion": "Escribí una función que reemplace cada letra por la que sigue en el abecedario. Z → A. No modificar símbolos ni números. Mantener mayúsculas/minúsculas.",
+                "codigoInicial": "function reemplazoCircular(texto) {\n    // Completá el código\n}\n\nconsole.log(reemplazoCircular(\"Hola\")); // \"Ipmb\"\nconsole.log(reemplazoCircular(\"Zapato\")); // \"Abqbu p\"",
+                "pregunta": "¿Qué pasa con la letra Z? ¿Cómo la tratás?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Simulador de sueldo con bonus y retenciones",
+                "instruccion": "Pedile al usuario su sueldo base, si tiene bonus (sí/no) y si tiene hijos (sí/no). Aplicá bonus (+10%), descuento por hijos (-5%) y retención final (15%).",
+                "codigoInicial": "function calcularSueldo() {\n    let sueldoBase = Number(prompt(\"Sueldo base:\"));\n    let tieneBonus = prompt(\"¿Tiene bonus? (sí/no)\");\n    let tieneHijos = prompt(\"¿Tiene hijos? (sí/no)\");\n    // Completá el código\n}\n\ncalcularSueldo();",
+                "pregunta": "¿Qué pasa si el usuario escribe 'SI' en mayúsculas? ¿Cómo lo solucionás?"
+            },
+            {
+                "numero": 6,
+                "titulo": "Clasificador de clientes premium",
+                "instruccion": "Pedile al usuario cantidad de compras y monto total gastado. Clasificalo en Premium, Regular o Nuevo según las condiciones.",
+                "codigoInicial": "function clasificarCliente() {\n    let compras = Number(prompt(\"Cantidad de compras:\"));\n    let gasto = Number(prompt(\"Monto total gastado:\"));\n    // Completá el código\n}\n\nclasificarCliente();",
+                "pregunta": "¿Qué condiciones debe cumplir un cliente para ser Premium? ¿Y para ser Regular?"
+            },
+            {
+                "numero": 7,
+                "titulo": "Calculadora de estadísticas",
+                "instruccion": "Escribí una función que reciba un array de números y devuelva un objeto con min, max, promedio, moda y mediana.",
+                "codigoInicial": "function calcularEstadisticas(numeros) {\n    // Completá el código\n}\n\nconsole.log(calcularEstadisticas([1, 2, 3, 4, 5]));\nconsole.log(calcularEstadisticas([1, 2, 2, 3, 4]));",
+                "pregunta": "¿Cómo calculás la moda? ¿Qué pasa si todos aparecen la misma cantidad de veces?"
+            },
+            {
+                "numero": 8,
+                "titulo": "Compresión de texto simple",
+                "instruccion": "Escribí una función que comprima un string reemplazando caracteres repetidos consecutivos con el carácter seguido de la cantidad.",
+                "codigoInicial": "function comprimirTexto(texto) {\n    // Completá el código\n}\n\nconsole.log(comprimirTexto(\"aaabbc\")); // \"a3b2c1\"\nconsole.log(comprimirTexto(\"abcde\")); // \"a1b1c1d1e1\"",
+                "pregunta": "¿Cómo harías la función inversa que descomprima el texto?"
+            },
+            {
+                "numero": 9,
+                "titulo": "Detector de palíndromos",
+                "instruccion": "Escribí una función que determine si una frase es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda). Ignorar espacios, signos y mayúsculas.",
+                "codigoInicial": "function esPalindromo(frase) {\n    // Completá el código\n}\n\nconsole.log(esPalindromo(\"anita lava la tina\")); // true\nconsole.log(esPalindromo(\"reconocer\")); // true\nconsole.log(esPalindromo(\"hola mundo\")); // false",
+                "pregunta": "¿Qué caracteres debés ignorar para que funcione con frases?"
+            },
+            {
+                "numero": 10,
+                "titulo": "Reemplazar con longitud",
+                "instruccion": "Dado un string, reemplazá cada palabra por la cantidad de letras que tiene. Usá .split(), .map(), .join().",
+                "codigoInicial": "function reemplazarPorLongitud(texto) {\n    // Completá el código\n}\n\nconsole.log(reemplazarPorLongitud(\"Hola mundo cruel\")); // \"4 5 5\"\nconsole.log(reemplazarPorLongitud(\"Esto es JS\")); // \"4 2 2\"",
+                "pregunta": "¿Qué pasa si la palabra tiene signos de puntuación? ¿Deberían contarse?"
+            },
+            {
+                "numero": 11,
+                "titulo": "Reordenar letras por tipo",
+                "instruccion": "Escribí una función que reciba un string y devuelva otro donde las letras se agrupen en: vocales, consonantes, números, otros.",
+                "codigoInicial": "function ordenarPorTipo(texto) {\n    // Completá el código\n}\n\nconsole.log(ordenarPorTipo(\"Hola123!?\")); // \"oaiHl123!?\"\nconsole.log(ordenarPorTipo(\"JS 2025!\")); // \"JS25 2!\"",
+                "pregunta": "¿Qué considerás como vocal? ¿La 'y' cuenta como vocal?"
+            },
+            {
+                "numero": 12,
+                "titulo": "Comprimir letras repetidas",
+                "instruccion": "Escribí una función que transforme secuencias repetidas de letras en la letra seguida de la cantidad.",
+                "codigoInicial": "function comprimir(texto) {\n    // Completá el código\n}\n\nconsole.log(comprimir(\"aaabbcaaa\")); // \"a3b2c1a3\"\nconsole.log(comprimir(\"abcd\")); // \"a1b1c1d1\"",
+                "pregunta": "¿Qué pasa si hay mayúsculas y minúsculas? ¿Cómo las tratás?"
+            },
+            {
+                "numero": 13,
+                "titulo": "Validar formato de fecha",
+                "instruccion": "Escribí una función que reciba un string y devuelva true si tiene el formato \"DD/MM/AAAA\" y es una fecha válida.",
+                "codigoInicial": "function esFechaValida(fecha) {\n    // Completá el código\n}\n\nconsole.log(esFechaValida(\"12/05/2020\")); // true\nconsole.log(esFechaValida(\"31/02/2020\")); // false\nconsole.log(esFechaValida(\"01-01-2000\")); // false",
+                "pregunta": "¿Qué pasa con años bisiestos? ¿Cómo validás el 29/02?"
+            },
+            {
+                "numero": 14,
+                "titulo": "Detección de palabras espejadas",
+                "instruccion": "Escribí una función que reciba dos palabras y devuelva true si una es el reverso exacto de la otra. Ignorar mayúsculas/minúsculas.",
+                "codigoInicial": "function esEspejo(palabra1, palabra2) {\n    // Completá el código\n}\n\nconsole.log(esEspejo(\"amor\", \"roma\")); // true\nconsole.log(esEspejo(\"abc\", \"cba\")); // true\nconsole.log(esEspejo(\"hola\", \"mundo\")); // false",
+                "pregunta": "¿Qué pasa si las palabras tienen diferentes longitudes?"
+            },
+            {
+                "numero": 15,
+                "titulo": "Encontrar el carácter más frecuente",
+                "instruccion": "Escribí una función que reciba un string y devuelva el carácter (letra o número) que más veces aparece. Ignorá espacios y mayúsculas.",
+                "codigoInicial": "function masFrecuente(texto) {\n    // Completá el código\n}\n\nconsole.log(masFrecuente(\"aabbbccdd\")); // \"b\"\nconsole.log(masFrecuente(\"111223\")); // \"1\"\nconsole.log(masFrecuente(\"abcd\")); // \"a\"",
+                "pregunta": "¿Qué pasa si hay un empate? ¿Cómo decidís cuál devolver?"
             }
         ]
     },
@@ -240,8 +351,119 @@
                 "numero": 5,
                 "titulo": "Explorador Galáctico - Star Wars API",
                 "instruccion": "Usá fetch y async/await para obtener datos de la API de Star Wars.",
-                "codigoInicial": "// a) Mostrar los primeros 5 personajes con nombre y altura\nasync function mostrarPersonajes() {\n    // Completá el código\n}\n\n// b) Mostrar el planeta natal de Luke Skywalker\nasync function mostrarPlanetaLuke() {\n    // Completá el código\n}\n\n// c) Mostrar planetas con clima árido\nasync function mostrarPlanetasAridos() {\n    // Completá el código\n}\n\n// d) Mostrar la nave más grande\nasync function mostrarNaveMasGrande() {\n    // Completá el código\n}\n\n// e) Mostrar información completa de una película\nasync function mostrarPelicula(id) {\n    // Completá el código\n}\n\n// Ejecutá las funciones\n// mostrarPersonajes();\n// mostrarPlanetaLuke();\n// mostrarPlanetasAridos();\n// mostrarNaveMasGrande();\n// mostrarPelicula(1);",
+                "codigoInicial": "async function mostrarPersonajes() {\n    // Completá el código\n}\n\nasync function mostrarPlanetaLuke() {\n    // Completá el código\n}\n\nasync function mostrarPlanetasAridos() {\n    // Completá el código\n}\n\nasync function mostrarNaveMasGrande() {\n    // Completá el código\n}\n\nasync function mostrarPelicula(id) {\n    // Completá el código\n}\n\n// Ejecutá las funciones\n// mostrarPersonajes();\n// mostrarPlanetaLuke();\n// mostrarPlanetasAridos();\n// mostrarNaveMasGrande();\n// mostrarPelicula(1);",
                 "pregunta": "¿Por qué es necesario usar async/await con fetch? ¿Qué pasa si no esperás la respuesta?"
+            }
+        ]
+    },
+    {
+        "modulo": 8,
+        "titulo": "Ejercicios extras",
+        "ejercicios": [
+            {
+                "numero": 1,
+                "titulo": "Extraer mayúsculas",
+                "instruccion": "Escribí una función que reciba un string y devuelva otro string con solo las letras mayúsculas. Resolver con for y con funciones nativas.",
+                "codigoInicial": "function extraerMayusculasFor(texto) {\n    // Completá con for\n}\n\nfunction extraerMayusculasNativo(texto) {\n    // Completá con filter/match\n}\n\nconsole.log(extraerMayusculasFor(\"Hola Mundo Cruel\"));\nconsole.log(extraerMayusculasNativo(\"Hola Mundo Cruel\"));",
+                "pregunta": "¿Qué pasa si el string tiene números o símbolos? ¿Deberían incluirse?"
+            },
+            {
+                "numero": 2,
+                "titulo": "Duplicar letras",
+                "instruccion": "Escribí una función que reciba un string y duplique cada letra. Bonus: que solo duplique letras, no números ni símbolos.",
+                "codigoInicial": "function duplicarLetras(texto) {\n    // Completá el código\n}\n\nconsole.log(duplicarLetras(\"Hola123!\"));\n// Resultado esperado: \"HHoollaa123!\"",
+                "pregunta": "¿Cómo harías para que solo duplique letras y no números ni símbolos?"
+            },
+            {
+                "numero": 3,
+                "titulo": "Palabra más frecuente",
+                "instruccion": "Dada una frase, devolvé la palabra que más veces aparece. Ignorar mayúsculas/minúsculas y signos. Empate: devolver cualquiera.",
+                "codigoInicial": "function palabraMasFrecuente(frase) {\n    // Completá el código\n}\n\nconsole.log(palabraMasFrecuente(\"Hola hola mundo!\")); // \"hola\"\nconsole.log(palabraMasFrecuente(\"Hola, mundo cruel, mundo!\")); // \"mundo\"",
+                "pregunta": "¿Qué pasa si hay un empate? ¿Cómo decidís cuál devolver?"
+            },
+            {
+                "numero": 4,
+                "titulo": "Reemplazo circular de letras",
+                "instruccion": "Escribí una función que reemplace cada letra por la que sigue en el abecedario. Z → A. No modificar símbolos ni números. Mantener mayúsculas/minúsculas.",
+                "codigoInicial": "function reemplazoCircular(texto) {\n    // Completá el código\n}\n\nconsole.log(reemplazoCircular(\"Hola\")); // \"Ipmb\"\nconsole.log(reemplazoCircular(\"Zapato\")); // \"Abqbu p\"",
+                "pregunta": "¿Qué pasa con la letra Z? ¿Cómo la tratás?"
+            },
+            {
+                "numero": 5,
+                "titulo": "Simulador de sueldo con bonus y retenciones",
+                "instruccion": "Pedile al usuario su sueldo base, si tiene bonus (sí/no) y si tiene hijos (sí/no). Aplicá bonus (+10%), descuento por hijos (-5%) y retención final (15%).",
+                "codigoInicial": "function calcularSueldo() {\n    let sueldoBase = Number(prompt(\"Sueldo base:\"));\n    let tieneBonus = prompt(\"¿Tiene bonus? (sí/no)\");\n    let tieneHijos = prompt(\"¿Tiene hijos? (sí/no)\");\n    // Completá el código\n}\n\ncalcularSueldo();",
+                "pregunta": "¿Qué pasa si el usuario escribe 'SI' en mayúsculas? ¿Cómo lo solucionás?"
+            },
+            {
+                "numero": 6,
+                "titulo": "Clasificador de clientes premium",
+                "instruccion": "Pedile al usuario cantidad de compras y monto total gastado. Clasificalo en Premium, Regular o Nuevo según las condiciones.",
+                "codigoInicial": "function clasificarCliente() {\n    let compras = Number(prompt(\"Cantidad de compras:\"));\n    let gasto = Number(prompt(\"Monto total gastado:\"));\n    // Completá el código\n}\n\nclasificarCliente();",
+                "pregunta": "¿Qué condiciones debe cumplir un cliente para ser Premium? ¿Y para ser Regular?"
+            },
+            {
+                "numero": 7,
+                "titulo": "Calculadora de estadísticas",
+                "instruccion": "Escribí una función que reciba un array de números y devuelva un objeto con min, max, promedio, moda y mediana.",
+                "codigoInicial": "function calcularEstadisticas(numeros) {\n    // Completá el código\n}\n\nconsole.log(calcularEstadisticas([1, 2, 3, 4, 5]));\nconsole.log(calcularEstadisticas([1, 2, 2, 3, 4]));",
+                "pregunta": "¿Cómo calculás la moda? ¿Qué pasa si todos aparecen la misma cantidad de veces?"
+            },
+            {
+                "numero": 8,
+                "titulo": "Compresión de texto simple",
+                "instruccion": "Escribí una función que comprima un string reemplazando caracteres repetidos consecutivos con el carácter seguido de la cantidad.",
+                "codigoInicial": "function comprimirTexto(texto) {\n    // Completá el código\n}\n\nconsole.log(comprimirTexto(\"aaabbc\")); // \"a3b2c1\"\nconsole.log(comprimirTexto(\"abcde\")); // \"a1b1c1d1e1\"",
+                "pregunta": "¿Cómo harías la función inversa que descomprima el texto?"
+            },
+            {
+                "numero": 9,
+                "titulo": "Detector de palíndromos",
+                "instruccion": "Escribí una función que determine si una frase es un palíndromo (se lee igual de izquierda a derecha que de derecha a izquierda). Ignorar espacios, signos y mayúsculas.",
+                "codigoInicial": "function esPalindromo(frase) {\n    // Completá el código\n}\n\nconsole.log(esPalindromo(\"anita lava la tina\")); // true\nconsole.log(esPalindromo(\"reconocer\")); // true\nconsole.log(esPalindromo(\"hola mundo\")); // false",
+                "pregunta": "¿Qué caracteres debés ignorar para que funcione con frases?"
+            },
+            {
+                "numero": 10,
+                "titulo": "Reemplazar con longitud",
+                "instruccion": "Dado un string, reemplazá cada palabra por la cantidad de letras que tiene. Usá .split(), .map(), .join().",
+                "codigoInicial": "function reemplazarPorLongitud(texto) {\n    // Completá el código\n}\n\nconsole.log(reemplazarPorLongitud(\"Hola mundo cruel\")); // \"4 5 5\"\nconsole.log(reemplazarPorLongitud(\"Esto es JS\")); // \"4 2 2\"",
+                "pregunta": "¿Qué pasa si la palabra tiene signos de puntuación? ¿Deberían contarse?"
+            },
+            {
+                "numero": 11,
+                "titulo": "Reordenar letras por tipo",
+                "instruccion": "Escribí una función que reciba un string y devuelva otro donde las letras se agrupen en: vocales, consonantes, números, otros.",
+                "codigoInicial": "function ordenarPorTipo(texto) {\n    // Completá el código\n}\n\nconsole.log(ordenarPorTipo(\"Hola123!?\")); // \"oaiHl123!?\"\nconsole.log(ordenarPorTipo(\"JS 2025!\")); // \"JS25 2!\"",
+                "pregunta": "¿Qué considerás como vocal? ¿La 'y' cuenta como vocal?"
+            },
+            {
+                "numero": 12,
+                "titulo": "Comprimir letras repetidas",
+                "instruccion": "Escribí una función que transforme secuencias repetidas de letras en la letra seguida de la cantidad.",
+                "codigoInicial": "function comprimir(texto) {\n    // Completá el código\n}\n\nconsole.log(comprimir(\"aaabbcaaa\")); // \"a3b2c1a3\"\nconsole.log(comprimir(\"abcd\")); // \"a1b1c1d1\"",
+                "pregunta": "¿Qué pasa si hay mayúsculas y minúsculas? ¿Cómo las tratás?"
+            },
+            {
+                "numero": 13,
+                "titulo": "Validar formato de fecha",
+                "instruccion": "Escribí una función que reciba un string y devuelva true si tiene el formato \"DD/MM/AAAA\" y es una fecha válida.",
+                "codigoInicial": "function esFechaValida(fecha) {\n    // Completá el código\n}\n\nconsole.log(esFechaValida(\"12/05/2020\")); // true\nconsole.log(esFechaValida(\"31/02/2020\")); // false\nconsole.log(esFechaValida(\"01-01-2000\")); // false",
+                "pregunta": "¿Qué pasa con años bisiestos? ¿Cómo validás el 29/02?"
+            },
+            {
+                "numero": 14,
+                "titulo": "Detección de palabras espejadas",
+                "instruccion": "Escribí una función que reciba dos palabras y devuelva true si una es el reverso exacto de la otra. Ignorar mayúsculas/minúsculas.",
+                "codigoInicial": "function esEspejo(palabra1, palabra2) {\n    // Completá el código\n}\n\nconsole.log(esEspejo(\"amor\", \"roma\")); // true\nconsole.log(esEspejo(\"abc\", \"cba\")); // true\nconsole.log(esEspejo(\"hola\", \"mundo\")); // false",
+                "pregunta": "¿Qué pasa si las palabras tienen diferentes longitudes?"
+            },
+            {
+                "numero": 15,
+                "titulo": "Encontrar el carácter más frecuente",
+                "instruccion": "Escribí una función que reciba un string y devuelva el carácter (letra o número) que más veces aparece. Ignorá espacios y mayúsculas.",
+                "codigoInicial": "function masFrecuente(texto) {\n    // Completá el código\n}\n\nconsole.log(masFrecuente(\"aabbbccdd\")); // \"b\"\nconsole.log(masFrecuente(\"111223\")); // \"1\"\nconsole.log(masFrecuente(\"abcd\")); // \"a\"",
+                "pregunta": "¿Qué pasa si hay un empate? ¿Cómo decidís cuál devolver?"
             }
         ]
     }
