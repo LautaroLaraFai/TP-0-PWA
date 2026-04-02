@@ -35,6 +35,7 @@ function generarEjercicios(nroModulo) {
             
             container.innerHTML = "";
             
+
             modulo.ejercicios.forEach(ej => {
                 container.innerHTML += `
                     <div class="ejercicio">
@@ -133,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarComponente('footer-placeholder', 'footer.html');
     
     let params = new URLSearchParams(window.location.search);
-    let modulo = parseInt(params.get("modulo")) || 1;
+    let modulo = parseInt(params.get("modulo"));
     
     generarEjercicios(modulo);
 });
@@ -145,81 +146,81 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-const KONAMI_CODE = ['ArrowUp', 'ArrowDown', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-let konamiPosicion = 0;
-let konamiSecuencia = [];
-let timeoutId = null;
+    // const KONAMI_CODE = ['ArrowUp', 'ArrowDown', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+    // let konamiPosicion = 0;
+    // let konamiSecuencia = [];
+    // let timeoutId = null;
 
-function mostrarMensajeEasterEgg(texto, esError = false) {
-    let mensajeDiv = document.getElementById('konami-mensaje');
-    if (!mensajeDiv) {
-        mensajeDiv = document.createElement('div');
-        mensajeDiv.id = 'konami-mensaje';
-        mensajeDiv.style.position = 'fixed';
-        mensajeDiv.style.bottom = '20px';
-        mensajeDiv.style.right = '20px';
-        mensajeDiv.style.backgroundColor = '#2d2d3a';
-        mensajeDiv.style.color = '#89ca78';
-        mensajeDiv.style.padding = '10px 15px';
-        mensajeDiv.style.borderRadius = '8px';
-        mensajeDiv.style.fontFamily = 'monospace';
-        mensajeDiv.style.fontSize = '12px';
-        mensajeDiv.style.zIndex = '9999';
-        mensajeDiv.style.border = '1px solid #3d3d4a';
-        mensajeDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
-        document.body.appendChild(mensajeDiv);
-    }
-    
-    mensajeDiv.innerHTML = texto;
-    mensajeDiv.style.color = esError ? '#f48771' : '#89ca78';
-    
-    setTimeout(() => {
-        if (mensajeDiv) mensajeDiv.style.opacity = '0';
-        setTimeout(() => {
-            if (mensajeDiv) mensajeDiv.remove();
-        }, 500);
-    }, 5000);
-}
-
-function reiniciarSecuencia() {
-    konamiPosicion = 0;
-    konamiSecuencia = [];
-    if (timeoutId) {
-        clearTimeout(timeoutId);
-        timeoutId = null;
-    }
-}
-
-function iniciarTimeout() {
-    if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-        if (konamiPosicion > 0) {
-            reiniciarSecuencia();
-        }
-    }, 5000);
-}
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault();
-    }
-    
-    let tecla = e.code;
-    
-    if (tecla === KONAMI_CODE[konamiPosicion]) {
-        konamiSecuencia.push(tecla);
-        konamiPosicion++;
+    // function mostrarMensajeEasterEgg(texto, esError = false) {
+    //     let mensajeDiv = document.getElementById('konami-mensaje');
+    //     if (!mensajeDiv) {
+    //         mensajeDiv = document.createElement('div');
+    //         mensajeDiv.id = 'konami-mensaje';
+    //         mensajeDiv.style.position = 'fixed';
+    //         mensajeDiv.style.bottom = '20px';
+    //         mensajeDiv.style.right = '20px';
+    //         mensajeDiv.style.backgroundColor = '#2d2d3a';
+    //         mensajeDiv.style.color = '#89ca78';
+    //         mensajeDiv.style.padding = '10px 15px';
+    //         mensajeDiv.style.borderRadius = '8px';
+    //         mensajeDiv.style.fontFamily = 'monospace';
+    //         mensajeDiv.style.fontSize = '12px';
+    //         mensajeDiv.style.zIndex = '9999';
+    //         mensajeDiv.style.border = '1px solid #3d3d4a';
+    //         mensajeDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+    //         document.body.appendChild(mensajeDiv);
+    //     }
         
-        if (konamiPosicion === KONAMI_CODE.length) {
-            if (timeoutId) clearTimeout(timeoutId);
-            mostrarMensajeEasterEgg('¡CÓDIGO SECRETO!');
-            setTimeout(() => {
-                window.location.href = 'doom.html';
-            }, 500);
-        } else {
-            iniciarTimeout();
-        }
-    } else if (tecla !== 'ShiftLeft' && tecla !== 'ShiftRight' && tecla !== 'ControlLeft' && tecla !== 'ControlRight') {        
-        reiniciarSecuencia();
-    }
-});
+    //     mensajeDiv.innerHTML = texto;
+    //     mensajeDiv.style.color = esError ? '#f48771' : '#89ca78';
+        
+    //     setTimeout(() => {
+    //         if (mensajeDiv) mensajeDiv.style.opacity = '0';
+    //         setTimeout(() => {
+    //             if (mensajeDiv) mensajeDiv.remove();
+    //         }, 500);
+    //     }, 5000);
+    // }
+
+    // function reiniciarSecuencia() {
+    //     konamiPosicion = 0;
+    //     konamiSecuencia = [];
+    //     if (timeoutId) {
+    //         clearTimeout(timeoutId);
+    //         timeoutId = null;
+    //     }
+    // }
+
+    // function iniciarTimeout() {
+    //     if (timeoutId) clearTimeout(timeoutId);
+    //     timeoutId = setTimeout(() => {
+    //         if (konamiPosicion > 0) {
+    //             reiniciarSecuencia();
+    //         }
+    //     }, 5000);
+    // }
+
+    // document.addEventListener('keydown', function(e) {
+    //     if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    //         e.preventDefault();
+    //     }
+        
+    //     let tecla = e.code;
+        
+    //     if (tecla === KONAMI_CODE[konamiPosicion]) {
+    //         konamiSecuencia.push(tecla);
+    //         konamiPosicion++;
+            
+    //         if (konamiPosicion === KONAMI_CODE.length) {
+    //             if (timeoutId) clearTimeout(timeoutId);
+    //             mostrarMensajeEasterEgg('¡CÓDIGO SECRETO!');
+    //             setTimeout(() => {
+    //                 window.location.href = 'doom.html';
+    //             }, 500);
+    //         } else {
+    //             iniciarTimeout();
+    //         }
+    //     } else if (tecla !== 'ShiftLeft' && tecla !== 'ShiftRight' && tecla !== 'ControlLeft' && tecla !== 'ControlRight') {        
+    //         reiniciarSecuencia();
+    //     }
+    // });
