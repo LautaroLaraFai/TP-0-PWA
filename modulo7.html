@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,17 @@
                     <h3>Ejercicio 1</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué significa que JavaScript sea un lenguaje asincrónico y no bloqueante?</strong></p>
+                        <p><strong>Asincronía:</strong> Las tareas pueden ejecutarse en segundo plano mientras otras continúan. Esto permite que operaciones que toman tiempo (como leer un archivo o esperar una respuesta de red) no detengan la ejecución del resto del código.</p>
+                        <p><strong>No bloqueante:</strong> Las operaciones devuelven el control inmediatamente, independientemente de si la tarea ha terminado o no. El hilo de ejecución no se queda detenido esperando.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">console.log("1");</div>
+                                <div class="consola-line success">setTimeout(() => console.log("2"), 1000);</div>
+                                <div class="consola-line success">console.log("3");</div>
+                                <div class="consola-line info">// Salida: 1, 3, 2 (no bloquea)</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -27,6 +38,22 @@
                     <h3>Ejercicio 2</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué es el Event Loop y qué rol cumple en la asincronía?</strong></p>
+                        <p>El <strong>Event Loop</strong> (bucle de eventos) es el mecanismo que permite a JavaScript manejar operaciones asíncronas. Su función es estar continuamente verificando si hay tareas pendientes en la cola de mensajes y ejecutarlas cuando el call stack está vacío.</p>
+                        <p><strong>Componentes principales:</strong></p>
+                        <ul>
+                            <li><strong>Call Stack:</strong> Pila de ejecución de funciones.</li>
+                            <li><strong>Task Queue (Callback Queue):</strong> Cola donde se guardan los callbacks listos para ejecutarse.</li>
+                            <li><strong>Event Loop:</strong> Ciclo que transfiere tareas de la cola al call stack cuando está vacío.</li>
+                        </ul>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Funcionamiento</div>
+                            <div class="consola-output">
+                                <div class="consola-line info">1. Ejecuta código síncrono</div>
+                                <div class="consola-line info">2. Las tareas asíncronas (setTimeout, fetch) pasan a Web APIs</div>
+                                <div class="consola-line info">3. Cuando terminan, sus callbacks van a la Task Queue</div>
+                                <div class="consola-line info">4. Event Loop las pasa al Call Stack cuando está vacío</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -34,6 +61,23 @@
                     <h3>Ejercicio 3</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué es una promesa (Promise) y cuáles son sus tres posibles estados?</strong></p>
+                        <p>Una <strong>Promise</strong> es un objeto que representa la eventual finalización (o falla) de una operación asíncrona. Es como un "contrato" que ahora no tiene valor, pero lo tendrá en el futuro.</p>
+                        <p><strong>Tres estados:</strong></p>
+                        <ul>
+                            <li><strong>Pending (pendiente):</strong> Estado inicial, no se ha completado ni rechazado.</li>
+                            <li><strong>Fulfilled (resuelta):</strong> La operación se completó con éxito.</li>
+                            <li><strong>Rejected (rechazada):</strong> La operación falló.</li>
+                        </ul>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">const promesa = new Promise((resolve, reject) => {</div>
+                                <div class="consola-line success">    // estado: pending</div>
+                                <div class="consola-line success">    if (todoOk) resolve("Éxito"); // estado: fulfilled</div>
+                                <div class="consola-line success">    else reject("Error");         // estado: rejected</div>
+                                <div class="consola-line success">});</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -41,6 +85,22 @@
                     <h3>Ejercicio 4</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Cómo se crea una promesa manualmente?</strong></p>
+                        <p>Se utiliza el constructor <code>new Promise()</code> que recibe una función ejecutora (executor) con dos parámetros: <code>resolve</code> y <code>reject</code>.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">function esperar(ms) {</div>
+                                <div class="consola-line success">    return new Promise((resolve) => {</div>
+                                <div class="consola-line success">        setTimeout(resolve, ms);</div>
+                                <div class="consola-line success">    });</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">const promesaConError = new Promise((resolve, reject) => {</div>
+                                <div class="consola-line success">    const exito = false;</div>
+                                <div class="consola-line success">    if (exito) resolve("Ok");</div>
+                                <div class="consola-line success">    else reject("Algo salió mal");</div>
+                                <div class="consola-line success">});</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -48,6 +108,19 @@
                     <h3>Ejercicio 5</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Cómo se maneja el resultado de una promesa usando .then() y .catch()?</strong></p>
+                        <p><code>.then()</code> se ejecuta cuando la promesa se resuelve (fulfilled) y recibe el valor resuelto. <code>.catch()</code> se ejecuta cuando la promesa se rechaza (rejected) y recibe el error.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">miPromesa</div>
+                                <div class="consola-line success">    .then(resultado => {</div>
+                                <div class="consola-line success">        console.log("Éxito:", resultado);</div>
+                                <div class="consola-line success">    })</div>
+                                <div class="consola-line success">    .catch(error => {</div>
+                                <div class="consola-line success">        console.log("Error:", error);</div>
+                                <div class="consola-line success">    });</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -55,6 +128,20 @@
                     <h3>Ejercicio 6</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué ventaja tiene async/await frente a .then()?</strong></p>
+                        <p><code>async/await</code> es azúcar sintáctico sobre las promesas. Permite escribir código asíncrono que se lee como si fuera síncrono, más legible y fácil de mantener. Evita el anidamiento excesivo y facilita el manejo de errores con <code>try/catch</code>.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Comparación</div>
+                            <div class="consola-output">
+                                <div class="consola-line info">// Con .then()</div>
+                                <div class="consola-line success">fetch(url)</div>
+                                <div class="consola-line success">    .then(res => res.json())</div>
+                                <div class="consola-line success">    .then(data => console.log(data));</div>
+                                <div class="consola-line info">// Con async/await</div>
+                                <div class="consola-line success">const response = await fetch(url);</div>
+                                <div class="consola-line success">const data = await response.json();</div>
+                                <div class="consola-line success">console.log(data);</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -62,6 +149,16 @@
                     <h3>Ejercicio 7</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué ocurre si dentro de una función async ocurre un error y no se usa try/catch?</strong></p>
+                        <p>Si una función <code>async</code> lanza un error y no se captura con <code>try/catch</code> dentro de la función, la promesa que devuelve se rechaza automáticamente con ese error. Quien consuma la función deberá manejarlo con <code>.catch()</code> o un <code>try/catch</code> externo.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">async function obtenerDatos() {</div>
+                                <div class="consola-line error">    throw new Error("Fallo interno"); // la promesa se rechaza</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">obtenerDatos().catch(err => console.log(err)); // Se captura acá</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -69,6 +166,16 @@
                     <h3>Ejercicio 8</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué hace Promise.all() y en qué casos puede fallar?</strong></p>
+                        <p><code>Promise.all()</code> recibe un array de promesas y devuelve una nueva promesa que se resuelve cuando <strong>todas</strong> las promesas del array se resuelven. Devuelve un array con los resultados en el mismo orden.</p>
+                        <p><strong>Falla cuando:</strong> Cualquiera de las promesas del array es rechazada. En ese caso, <code>Promise.all()</code> se rechaza inmediatamente con el error de la primera promesa que falla.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">Promise.all([promesa1, promesa2, promesa3])</div>
+                                <div class="consola-line success">    .then(resultados => console.log(resultados))</div>
+                                <div class="consola-line success">    .catch(error => console.log("Una falló:", error));</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -76,6 +183,18 @@
                     <h3>Ejercicio 9</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Cuál es la diferencia entre Promise.all() y Promise.race()?</strong></p>
+                        <p><strong>Promise.all():</strong> Espera a que <strong>todas</strong> las promesas se resuelvan. Si alguna falla, todo falla.</p>
+                        <p><strong>Promise.race():</strong> Se resuelve (o rechaza) con el resultado de la <strong>primera</strong> promesa que se complete (sin importar si fue resuelta o rechazada).</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line info">// Promise.race() devuelve la primera que termine</div>
+                                <div class="consola-line success">Promise.race([</div>
+                                <div class="consola-line success">    new Promise(r => setTimeout(() => r("A"), 1000)),</div>
+                                <div class="consola-line success">    new Promise(r => setTimeout(() => r("B"), 500))</div>
+                                <div class="consola-line success">]).then(resultado => console.log(resultado)); // "B" (la más rápida)</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -83,6 +202,20 @@
                     <h3>Ejercicio 10</h3>
                     <div class="ejercicio-contenido">
                         <p><strong>¿Qué es una función async? ¿Qué devuelve siempre?</strong></p>
+                        <p>Una función <code>async</code> es una función declarada con la palabra clave <code>async</code>. Esta característica permite usar <code>await</code> dentro de ella para esperar promesas.</p>
+                        <p><strong>Lo que devuelve siempre:</strong> Una función <code>async</code> <strong>siempre devuelve una Promesa</strong>. Si el código retorna un valor que no es una promesa, JavaScript lo envuelve automáticamente en una promesa resuelta. Si ocurre un error, devuelve una promesa rechazada.</p>
+                        <div class="consola" style="margin-top: 10px;">
+                            <div class="consola-header">Ejemplo</div>
+                            <div class="consola-output">
+                                <div class="consola-line success">async function saludar() {</div>
+                                <div class="consola-line success">    return "Hola"; // automáticamente envuelto en Promise.resolve("Hola")</div>
+                                <div class="consola-line success">}</div>
+                                <div class="consola-line success">saludar().then(console.log); // "Hola"</div>
+                                <div class="consola-line success">async function fallar() {</div>
+                                <div class="consola-line success">    throw new Error("Ups"); // devuelve Promise.reject</div>
+                                <div class="consola-line success">}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,7 +228,7 @@
             <input type="checkbox" id="practica-toggle" class="dropdown-toggle">
             <div class="dropdown-content" id="dropdown-practica">
                 <div id="ejercicio-practica-container">
-
+                    
                 </div>
             </div>
         </div>
