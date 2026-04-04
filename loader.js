@@ -54,9 +54,9 @@ function generarEjercicios(nroModulo) {
             });
         })
         .catch(err => console.log("Error cargando ejercicios:", err));
-}
-
-function ejecutar(nroModulo, nroEjercicio) {
+    }
+    
+    function ejecutar(nroModulo, nroEjercicio) {
     let idTextarea = `codigo-mod${nroModulo}-ej${nroEjercicio}`;
     let idConsola = `consola-mod${nroModulo}-ej${nroEjercicio}`;
     
@@ -74,8 +74,6 @@ function ejecutar(nroModulo, nroEjercicio) {
     
     outputElem.innerHTML = "";
     
-    let originalLog = console.log;
-    let originalError = console.error;
     
     console.log = function(...args) {
         let mensaje = args.join(" ");
@@ -95,9 +93,6 @@ function ejecutar(nroModulo, nroEjercicio) {
         outputElem.innerHTML += `<div class="consola-line info">> Ejecución completada</div>`;
     } catch(error) {
         outputElem.innerHTML += `<div class="consola-line error">> Error: ${error.message}</div>`;
-    } finally {
-        console.log = originalLog;
-        console.error = originalError;
     }
 }
 
